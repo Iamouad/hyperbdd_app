@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Role;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -17,9 +18,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
         'email',
         'password',
+        'role_id',
+        'validated_by_admin'
     ];
 
     /**
@@ -40,4 +44,33 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function accepted()
+    {
+        return $this->validated_by_admin;
+    }
+
+    public function isInRole($role)
+    {
+        switch ($role) {
+            case "admin":
+                return $this->role_id == 1;
+                break;
+            case "professor":
+                return $this->role_id == 2;
+                break;
+            case "guest":
+                return $this->role_id == 3;
+                break;
+            
+            default:
+                return false;
+                break;
+        }
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }
