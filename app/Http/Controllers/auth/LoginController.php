@@ -1,53 +1,32 @@
 <?php
 
 namespace App\Http\Controllers\auth;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Validator;
-use Auth;
 
-use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
     public function index()
     {
-     return view('auth.login');
+        return view('auth.login');
     }
 
-    public function checklogin(Request $request)
+    public function store(Request $request)
     {
-     $this->validate($request, [
-      'email'   => 'required|email',
-      'password'  => 'required|alphaNum|min:3'
-     ]);
-     
-     $user_data = array(
-        'email'  => $request->get('email'),
-        'password' => $request->get('password')
-       );
-  
-       if(Auth::attempt($user_data))
-       {
-        return redirect('login/successlogin');
-       }
-       else
-       {
-        return back()->with('error', 'Wrong Login Details');
-       }
-    }   
+        $this->validate($request, [
+            'email' => 'required|email|max:100',
+            'password' => 'required|min:5'
 
-    public function successlogin()
-    {
-    return view('app');
+        ]);
+
+        if(Auth::attempt($request->only('email', 'password'), $request->remember)){
+            return redirect()->route('dashboard');
+        }
+        return redirect()->back()->with("status", "This account doesn't exist!!");
+        // else{
+        //     \dd(Auth::attempt($request->only('email', 'password')));
+        // }
     }
-
-   /* function logout()
-    {
-    Auth::logout();
-    return redirect('login');
-    }*/
-     
-
-    
 }

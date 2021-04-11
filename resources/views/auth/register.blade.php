@@ -2,8 +2,20 @@
 
 @section('content')
 <div class="w-75">
+
+    @if(isset(Auth::user()->email))
+    <script>window.location="/dashboard";</script>
+@endif
+
+@if ($message = Session::get('status'))
+<div class="alert alert-danger alert-block">
+<button type="button" class="close" data-dismiss="alert">×</button>
+<strong>{{ $message }}</strong>
+</div>
+@endif
+
 <form method="post" action="{{route('register')}}">
-    @csrf
+    @csrf    
     <div class="form-group">
         <label for="first_name">First name</label>
         <input type="text" class="form-control @error('username') border border-danger @enderror" value="{{old('first_name')}}" id="first_name" name="first_name" placeholder="Enter your first name">

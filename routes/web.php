@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\auth\RegisterController;
 
 
@@ -17,13 +18,17 @@ use App\Http\Controllers\auth\RegisterController;
 */
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'store']);
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
-//Route::post('/login/checklogin', 'LoginController@checklogin');
-//Route::get('/login/successlogin', 'LoginController@checklogin');
-Route::get('/login/successlogin', [LoginController::class, 'successlogin'])->name('success');  
-Route::post('/login/checklogin',  [LoginController::class, 'checklogin'])->name('check'); 
-//Route::get('/login/logout',  [LoginController::class, 'logout'])->name('login'); 
+Route::post('/register', [RegisterController::class, 'register']);
+
 
 Route::get('/', function () {
     return view('app');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
