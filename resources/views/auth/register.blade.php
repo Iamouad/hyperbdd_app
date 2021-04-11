@@ -18,7 +18,7 @@
     @csrf    
     <div class="form-group">
         <label for="first_name">First name</label>
-        <input type="text" class="form-control @error('username') border border-danger @enderror" value="{{old('first_name')}}" id="first_name" name="first_name" placeholder="Enter your first name">
+        <input type="text" class="form-control @error('username') border border-danger @enderror" value="{{old('firstname')}}" id="firstname" name="firstname" placeholder="Enter your first name">
         @error('first_name')
         <div class="text-danger mt-2 text-sm">
             {{$message}}
@@ -27,7 +27,7 @@
     </div>
     <div class="form-group">
         <label for="last_name">Last name</label>
-        <input type="text" class="form-control @error('last_name') border border-danger @enderror" value="{{old('last_name')}}" id="last_name" name="last_name" placeholder="Enter your last name">
+        <input type="text" class="form-control @error('last_name') border border-danger @enderror" value="{{old('lastname')}}" id="lastname" name="lastname" placeholder="Enter your last name">
         @error('last_name')
         <div class="text-danger mt-2 text-sm">
             {{$message}}

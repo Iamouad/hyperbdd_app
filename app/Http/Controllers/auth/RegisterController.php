@@ -20,8 +20,8 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $this->validate($request, [
-            'first_name' => 'required|max:20',
-            'last_name' => 'required|max:20',
+            'firstname' => 'required|max:20',
+            'lastname' => 'required|max:20',
             'email' => 'required|email|max:200',
             'password' => 'required|min:5|confirmed'
 
@@ -29,8 +29,8 @@ class RegisterController extends Controller
         try {
             //code...
             User::create([
-                'firstname' => $request->first_name,
-                'lastname' => $request->last_name,
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'role_id' => 3,
@@ -42,15 +42,12 @@ class RegisterController extends Controller
 
         }
 
-      
 
         if(Auth::attempt($request->only('email', 'password'), $request->remember)){
             return redirect()->route('dashboard');
         }
-        //return redirect()->back()->with("status", "This account doesn't exist!!");
-        else{
-            \dd(Auth::attempt($request->only('email', 'password')));
-        }
+        return redirect()->to('login')->with("status", "This needs to be validated !!");
+        
 
     }
 }

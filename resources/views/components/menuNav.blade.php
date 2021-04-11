@@ -16,18 +16,18 @@
     @endguest  
 
     @auth    
-    <div class="nav-item">
-      <a class="nav-link text-dark text-uppercase font-weight-bold" href="#">{{auth()->user()->lastname}}</a>
-  </div>
+   
   @if (auth()->user()->isInRole("admin"))
   <div class="nav-item">
-    <a class="nav-link text-dark font-weight-bold" href="#">Pendings</a>
+    <a class="nav-link text-dark font-weight-bold" href="{{route('pending')}}">Pendings</a>
   </div>
   <div class="nav-item">
-    <a class="nav-link text-dark font-weight-bold" href="#">Users</a>
+    <a class="nav-link text-dark font-weight-bold" href="{{route('users')}}">Users</a>
   </div>
   @endif
- 
+  <div class="nav-item">
+    <a class="nav-link text-dark text-uppercase font-weight-bold" href="#">{{auth()->user()->lastname}}</a>
+</div>
   <div class="nav-item">
     <form action="{{route('logout')}}" method="post">
       @csrf
