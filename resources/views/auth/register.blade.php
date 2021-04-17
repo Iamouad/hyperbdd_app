@@ -17,18 +17,18 @@
 <form method="post" action="{{route('register')}}">
     @csrf    
     <div class="form-group">
-        <label for="first_name">First name</label>
-        <input type="text" class="form-control @error('username') border border-danger @enderror" value="{{old('firstname')}}" id="firstname" name="firstname" placeholder="Enter your first name">
-        @error('first_name')
+        <label for="firstname">First name</label>
+        <input type="text" class="form-control @error('firstname') border border-danger @enderror" value="{{old('firstname')}}" id="firstname" name="firstname" placeholder="Enter your first name">
+        @error('firstname')
         <div class="text-danger mt-2 text-sm">
             {{$message}}
         </div>
         @enderror
     </div>
     <div class="form-group">
-        <label for="last_name">Last name</label>
-        <input type="text" class="form-control @error('last_name') border border-danger @enderror" value="{{old('lastname')}}" id="lastname" name="lastname" placeholder="Enter your last name">
-        @error('last_name')
+        <label for="lastname">Last name</label>
+        <input type="text" class="form-control @error('lastname') border border-danger @enderror" value="{{old('lastname')}}" id="lastname" name="lastname" placeholder="Enter your last name">
+        @error('lastname')
         <div class="text-danger mt-2 text-sm">
             {{$message}}
         </div>

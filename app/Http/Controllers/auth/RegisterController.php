@@ -38,7 +38,7 @@ class RegisterController extends Controller
             ]);
         } catch (Exception $ex) {
             //throw $th;
-            return redirect()->back()->with("status", "This email address is already registred ");
+            return redirect()->back()->with("status", $ex->getMessage());
 
         }
 
