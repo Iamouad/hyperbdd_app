@@ -14,7 +14,7 @@
 </div>
 @endif
 
-<form method="post" action="{{route('newBase')}}">
+<form method="post" action="{{route('newBase')}}" enctype="multipart/form-data">
     @csrf    
     <div class="form-group">
         <label for="dbname">Database name</label>

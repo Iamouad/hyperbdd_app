@@ -6,9 +6,11 @@ use App\Models\Base;
 use Illuminate\Http\Request;
 use App\Models\ApplicationType;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class BaseController extends Controller
 {
+
     //
     public function index()
     {
@@ -18,8 +20,40 @@ class BaseController extends Controller
         ] );
     }
 
+    public function storeFile($file)
+    {
+        # code...
+        $extention = $file->extension();
+        $mimeType = $file->getMimeType();
+        $path= Storage::disk('do_spaces')->putFileAs('uploads', $file, time().'.'.$extention, 'public');
+        dd($path);
+        return $path;
+
+    }
+
+    public function showFile()
+    {
+        # code...
+        // $file = Storage::disk('do_spaces')->get('uploads/1618870912.zip');
+
+        $headers = [
+            'Content-Type' => 'application/octet-stream'
+        ];
+
+        // if (file_exists($fileurl)) {
+        //     return Response::download($fileurl, 'Photos.zip', array('Content-Type: application/octet-stream','Content-Length: '. filesize($fileurl)))->deleteFileAfterSend(true);
+        // } else {
+        //     return ['status'=>'zip file does not exist'];
+        // }
+
+        $link = env('DO_REPO_LINK');
+        return redirect($link.'uploads/1618870755.zip');
+    }
+
     public function storeBase(Request $request)
     {
+        //dd($request->file->store('public/uploads'));
+        dd($this->storeFile($request->file('file')));
         # code...
         $this->validate($request, [
             'dbname' => 'required|max:50',

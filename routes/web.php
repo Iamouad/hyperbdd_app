@@ -35,6 +35,8 @@ Route::get('/users', [AdminController::class, 'getUsers'])->name("users");
 Route::get('/bases/new', [BaseController::class, 'index'])->name("newBase");
 Route::post('add-app-type', [BaseController::class, 'storeApplicationType']);
 Route::post('/bases/new', [BaseController::class, 'storeBase']);
+Route::get('/bases/download', [BaseController::class, 'showFile']);
+
 
 
 
