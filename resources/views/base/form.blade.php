@@ -91,9 +91,13 @@
     </div>
 
     <div class="form-group">
-        <label for="file">Upload a file</label>
-        <input type="file" class="form-control @error('file') border border-danger @enderror" value="{{old('file')}}" id="file" name="file" placeholder="Select a file to upload">
+        <input type="hidden" name="db_file_name" id="db_file_name"/>
+        <label for="file">Upload the database zip file</label>
+        <input type="file" data-url="/bases/upload" class="form-control @error('file') border border-danger @enderror" value="{{old('file')}}" id="file" name="file" placeholder="Select a file to upload">
+        <span class="m-2 font-weight-light" id="loading"></span>
+        <div id="progress" class="progress-bar form-group">&nbsp;</div>
         @error('file')
+        
         <div class="text-danger mt-2 text-sm">
             {{$message}}
         </div>
@@ -101,7 +105,7 @@
     </div>
     
     <div class="mt-2">
-        <button type="submit" class="btn btn-md btn-primary">Submit</button>
+        <button type="submit" id="submitBtn" class="btn btn-md btn-primary">Submit</button>
     </div>
   </form>
 </div>
@@ -118,8 +122,44 @@ $(document).ready(function(){
         e.preventDefault();
         submitApp();
         $('#divApp').hide();
-    })
-})
+    });
+
+    $("#submitBtn").prop('disabled',true);
+    $('#progress').hide().css(
+                    'width',
+                    '0%'
+                );
+
+    
+    $('#file').fileupload({
+            dataType: 'json',
+            maxChunkSize: 10000000,
+            add: function (e, data) {
+                $('#loading').text('Uploading...');
+                $('#progress').hide().css(
+                    'width',
+                    '0%'
+                );
+
+                data.submit();
+            },
+            done: function (e, data) {
+                $("#submitBtn").prop('disabled',false);
+                $('#loading').text('File uploaded successfully');
+                $('#db_file_name').val(data.result.path);
+               
+            }
+            
+        }); 
+    
+}).on('fileuploadprogressall', function (e, data) {
+        
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#progress').show().css(
+                'width',
+                progress + '%'
+            );
+        });
   
     function submitApp(userId){
             //var userId = $('#approveUser').val();

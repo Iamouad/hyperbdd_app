@@ -20,6 +20,8 @@ class Base extends Model
         'references',
         'classification_rate',
         'application_types_id',
-        'description'
+        'description',
+        'index_img_path',
+        'bdd_img_path'
     ];
 }
