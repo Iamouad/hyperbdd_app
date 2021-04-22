@@ -20,40 +20,33 @@ class BaseController extends Controller
         ] );
     }
 
-    public function storeFile($file)
+    public function uploadBase(Request $request)
     {
         # code...
+        $file = $request->file('file');
         $extention = $file->extension();
         $mimeType = $file->getMimeType();
         $path= Storage::disk('do_spaces')->putFileAs('uploads', $file, time().'.'.$extention, 'public');
-        dd($path);
-        return $path;
+        //dd($path);
+        $response = array(
+            'status' => 'success',
+            'path' => $path,
+        );
+        return response()->json($response); 
+        //return $path;
 
     }
 
-    public function showFile()
+    public function showFile(Request $request)
     {
-        # code...
-        // $file = Storage::disk('do_spaces')->get('uploads/1618870912.zip');
-
-        $headers = [
-            'Content-Type' => 'application/octet-stream'
-        ];
-
-        // if (file_exists($fileurl)) {
-        //     return Response::download($fileurl, 'Photos.zip', array('Content-Type: application/octet-stream','Content-Length: '. filesize($fileurl)))->deleteFileAfterSend(true);
-        // } else {
-        //     return ['status'=>'zip file does not exist'];
-        // }
-
         $link = env('DO_REPO_LINK');
-        return redirect($link.'uploads/1618870755.zip');
+        $path = $request->path;
+        return redirect($link.$path);
     }
 
     public function storeBase(Request $request)
     {
-        //dd($request->file->store('public/uploads'));
-        dd($this->storeFile($request->file('file')));
+      
         # code...
         $this->validate($request, [
             'dbname' => 'required|max:50',
@@ -62,7 +55,6 @@ class BaseController extends Controller
             'references' => 'nullable',
             'classification_rate'=>'min:0|numeric|required',
             'description' => 'nullable',
-
         ]);
 
         try {
@@ -74,13 +66,16 @@ class BaseController extends Controller
                 'references' => $request->references,
                 'description' => $request->description,
                 'classification_rate' => $request->classification_rate,
-                'application_types_id' => $request->apptype
+                'application_types_id' => $request->apptype,
+                'bdd_img_path' => $request->db_file_name
             ]);
         } catch (Exception $ex) {
             //throw $th;
             return redirect()->back()->with("status", $ex->getMessage());
 
         }
+
+        return redirect()->to('/');
     }
 
     public function storeApplicationType(Request $request)

@@ -52,6 +52,10 @@
             <a class="nav-link " style="color:white" href="{{route('users')}}">Users</a>
           </div>
           @endif
+
+          <div class="nav-item">
+            <a class="nav-link text-dark font-weight-bold" href="{{route('newBase')}}">Add a new Db</a>
+          </div>
           <div class="nav-item">
             <a class="nav-link  text-uppercase " style="color:white; margin-left: 647px;" href="#">{{auth()->user()->lastname}}</a>
         </div>
@@ -105,5 +109,6 @@
 
 
   
+
 
     

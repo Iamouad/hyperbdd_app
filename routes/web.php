@@ -6,7 +6,8 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\imgBase\BaseController;
 use App\Http\Controllers\auth\RegisterController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\dashboard\DashboardController;
+//use App\Http\Controllers\DashboardController;
 
 
 /*
@@ -36,7 +37,14 @@ Route::get('/users', [AdminController::class, 'getUsers'])->name("users");
 Route::get('/bases/new', [BaseController::class, 'index'])->name("newBase");
 Route::post('add-app-type', [BaseController::class, 'storeApplicationType']);
 Route::post('/bases/new', [BaseController::class, 'storeBase']);
+Route::post('/bases/upload', [BaseController::class, 'uploadBase']);
+
 Route::get('/bases/download', [BaseController::class, 'showFile']);
+
+Route::get('/', [DashboardController::class, 'index'])->name("dashboard");
+
+
+
 
 
 
@@ -48,3 +56,4 @@ Route::get('/', function () {
 
 
 Route::get('dashboard',[DashboardController::class,'show']);
+
