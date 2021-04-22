@@ -47,11 +47,11 @@ body {
 
     .form-control {
         border: 1px solid #d5dae2;
-        padding: 15px 25px;
+        padding: -29px -22px;
         margin-bottom: 20px;
-        min-height: 45px;
+        /* min-height: 17px; */
         font-size: 13px;
-        line-height: 15;
+        /* line-height: 15; */
         font-weight: normal;
 
         &::placeholder {

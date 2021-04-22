@@ -1,7 +1,11 @@
 @extends('app')
 
 @section('content')
-<div class="w-75">
+
+
+<div class="container" style="width: 900px;">
+      <div class="card login-card" style="    padding-bottom: 43px;" >
+<div class="w-75" style="margin-top: 61px;margin-left: 109px;">
 
     {{-- @if(isset(Auth::user()->email))
     <script>window.location="/dashboard";</script>
@@ -14,7 +18,7 @@
 </div>
 @endif
 
-<form method="post" action="{{route('newBase')}}" enctype="multipart/form-data">
+<form method="post" action="{{route('newBase')}}" enctype="multipart/form-data" style="max-width: 100%;">
     @csrf    
     <div class="form-group">
         <label for="dbname">Database name</label>
@@ -27,13 +31,13 @@
     </div>
     <div class="form-group">
         <label for="apptype">Application type</label>
-        <select class="form-control @error('apptype') border border-danger @enderror" value="{{old('apptype')}}" id="apptype" name="apptype" placeholder="Enter your application type">
+        <select style="    min-height: 51px;" class="form-control @error('apptype') border border-danger @enderror" value="{{old('apptype')}}" id="apptype" name="apptype" placeholder="Enter your application type">
             <option class="p-1" value="0" >Select an application type</option>
             @foreach ($applicationTypes as $item)
             <option class="p-1" value={{$item->id}} >{{$item->application_name}}</option>
             @endforeach
         </select>
-        <button class="btn btn-sm btn-secondary mt-1" id="newAppBtn">Add a new type</button>
+        <button class="btn btn-sm btn-secondary mt-1 button2 btn-primary" id="newAppBtn">Add a new type</button>
         @error('apptype')
         <div class="text-danger mt-2 text-sm">
             {{$message}}
@@ -46,7 +50,7 @@
     <div class="col-sm-6">
         <input type="text" id="newApp" class="form-control" placeholder="Application type">
     </div>
-    <button class="btn btn-sm btn-primary" id="submitApp">Confirm</label>
+    <button class="btn btn-sm btn-primary  button2" id="submitApp">Confirm</label>
     </div>
     
 
@@ -62,7 +66,7 @@
 
     <div class="form-group">
         <label for="references">References</label>
-        <textarea type="text" class="form-control @error('references') border border-danger @enderror" value="{{old('references')}}" id="references" name="references" placeholder="Enter your references"></textarea>
+        <textarea type="text" class=" form-control @error('references') border border-danger @enderror" value="{{old('references')}}" id="references" name="references" placeholder="Enter your references"></textarea>
         @error('references')
         <div class="text-danger mt-2 text-sm">
             {{$message}}
@@ -93,7 +97,7 @@
     <div class="form-group">
         <input type="hidden" name="db_file_name" id="db_file_name"/>
         <label for="file">Upload the database zip file</label>
-        <input type="file" data-url="/bases/upload" class="form-control @error('file') border border-danger @enderror" value="{{old('file')}}" id="file" name="file" placeholder="Select a file to upload">
+        <input type="file" data-url="/bases/upload" class="form-control @error('file') border border-danger @enderror" style="width: 100%;   height: 100%;" value="{{old('file')}}" id="file" name="file" placeholder="Select a file to upload">
         <span class="m-2 font-weight-light" id="loading"></span>
         <div id="progress" class="progress-bar form-group">&nbsp;</div>
         @error('file')
@@ -105,11 +109,12 @@
     </div>
     
     <div class="mt-2">
-        <button type="submit" id="submitBtn" class="btn btn-md btn-primary">Submit</button>
+        <button type="submit" id="submitBtn" class="btn btn-md btn-primary button1" >Submit</button>
     </div>
   </form>
 </div>
-
+</div>
+      </div>
 <script>
 
 $(document).ready(function(){

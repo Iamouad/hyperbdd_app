@@ -7,6 +7,7 @@
 <div class="d-flex justify-content-center">
     @csrf
     <div>
+    
         @if ($pendedUsers->count() > 0)
     @foreach ($pendedUsers as $user)
          <div id="{{'div'.$user->id}}" class="row">
