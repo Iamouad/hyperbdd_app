@@ -1,0 +1,183 @@
+ body {
+  font-family: "Karla", sans-serif;
+  background-color: #4b75a1;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+ } 
+/* .background{
+    background: linear-gradient(70deg, #7ca7d6, #29a8c9, #196ba7);
+  }  */
+/* logo */
+.brand-wrapper {
+        margin-bottom: 90px;
+        margin-left: 450px;
+        display: block;
+        float: right;
+       }
+.brand-wrapper .logo {
+          height: 37px; }
+.logo1 {
+          height: 23px; } 
+.form {
+  background: rgba(19, 35, 47, 0.9);
+  padding: 40px;
+  max-width: 600px;
+  margin: 40px auto;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+          box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+}
+.top-row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .top-row > div {
+    float: left;
+    width: 48%;
+    margin-right: 4%;
+  }
+  .top-row > div:last-child {
+    margin: 0;
+  }
+  .tab-content > div:last-child {
+    display: none;
+  }
+  .card{
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+     width: 100%;
+     max-width: 900px;
+     display: flex;
+     align-items: center;
+     padding: 0em;
+     box-shadow:#030303;
+  }
+  
+  .login-card {
+    border: 0;
+    border-radius: 27.5px;
+    box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
+    overflow: hidden; }
+  .login-card .card-body {
+    padding: 57px 60px 60px; }
+    @media (max-width: 900px) {
+      .login-card .card-body {
+        padding: 35px 24px; } }
+ .login-card-description {
+    font-size: 30px;
+    color: #000;
+    font-weight: normal;
+    margin-bottom: 40px;
+    margin-left: 50px;
+    text-align: center;
+    font-family: Comic Sans MS;
+    font-weight: 1000; }
+
+  .login-card form {
+    max-width: 326px; }
+  .login-card .form-control {
+    border: 1px solid #d5dae2;
+    padding: 15px 25px;
+    margin-bottom: 20px;
+    min-height: 45px;
+    font-size: 13px;
+    line-height: 15;
+    font-weight: normal; }
+    .login-card .form-control::-webkit-input-placeholder {
+      color: #919aa3; }
+    .login-card .form-control::-moz-placeholder {
+      color: #919aa3; }
+    .login-card .form-control:-ms-input-placeholder {
+      color: #919aa3; }
+    .login-card .form-control::-ms-input-placeholder {
+      color: #919aa3; }
+    .login-card .form-control::placeholder {
+      color: #919aa3; }
+  .login-card .login-btn {
+    padding: 13px 20px 12px;
+    background-color:#196ba7;
+    border-radius: 4px;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #fff;
+    margin-bottom: 24px; }
+    .login-card .login-btn:hover {
+      border: 1px solid #000;
+      background-color: transparent;
+      color: #000; }
+   /* .login-card-footer-nav a {
+    font-size: 14px;
+    color: #e3e5e7;
+    b   */
+  nav a{
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    padding: 7px 10px;
+    border-radius: 3px;
+
+  }
+a.active,a:hover{
+  border: 1px solid white;
+  transition: .5s;
+}
+.ecrit{
+    font-family: Comic Sans MS, Arial, Verdana, sans-serif;
+}
+
+.sing{
+    text-align: center;
+}
+.form-submit-button {
+
+  background: #B9DFFF;
+  
+  color: #fff;
+  
+  border: 1px solid #eee;
+  
+  border-radius: 20px;
+  
+  box-shadow: 5px 5px 5px #eee;
+  
+  text-shadow:none;
+  
+  }
+  
+  
+  
+  .form-submit-button:hover {
+  
+  background: #016ABC;
+  
+  color: #fff;
+  
+  border: 1px solid #eee;
+  
+  border-radius: 20px;
+  
+  box-shadow: 5px 5px 5px #eee;
+  
+  text-shadow:none;
+  
+  }
+.cont{
+
+  width: 618px;
+  margin-left: auto;
+  margin-right: auto;
+ /* max-width: 400px;
+  
+  margin: auto;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;*/
+} 
+/*# sourceMappingURL=login.css.map */
+
+      */

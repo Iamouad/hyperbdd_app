@@ -76,6 +76,7 @@ class BaseController extends Controller
         }
 
         return redirect()->to('/');
+        //return view('base.form');
     }
 
     public function storeApplicationType(Request $request)

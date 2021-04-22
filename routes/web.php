@@ -49,11 +49,11 @@ Route::get('/', [DashboardController::class, 'index'])->name("dashboard");
 
 
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 
 
 
-Route::get('dashboard',[DashboardController::class,'show']);
+Route::get('dashboard',[DashboardController::class,'show']);*/
 

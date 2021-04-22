@@ -1,31 +1,33 @@
 @extends('app')
 
 @section('content')
-<<<<<<< HEAD
+
 
 <main >
 
-@foreach($infos as $info)
+@foreach($bases as $base)
    <section class="page-section clearfix">
     <div class="container">
       <div class="intro">
         <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="images/intro.jpg" alt="">
         <div class="intro-text left-0 text-center bg-faded p-5 rounded">
           <h2 class="section-heading mb-4">
-            <span class="section-heading-lower">Data Base name</span>
+            <span class="section-heading-lower">{{$base->dbname}}</span>
           </h2>
+
+          
           <ul class="no_bullets ">
-            <li class="flex"><p class="left00">Picture's number : </p> <p> {{$info['id']}} </p>
+            <li class="flex"><p class="left00">Number of images : </p> <p> {{$base['nbimages']}} </p>
             </li>
-            <li class=" flex"><p class="left01">Reference :</p> <p>{{$info['firstname']}}</p>
+            <li class=" flex"><p class="left01">Reference :</p> <p>{{$base['references']}}</p>
             </li>
-            <li  class=" flex" > <p class="left02">Description : </p><p>{{$info['email']}}</p>
+            <li  class=" flex" > <p class="left02">Description : </p><p>{{$base['description']}}</p>
             </li>
         
           </ul>
 
           <div class="intro-button mx-auto">
-            <a class="btn btn-primary btn-xl" href="#">Link!</a>
+            <a class="btn btn-primary btn-xl" href={{env('DO_REPO_LINK').$base->bdd_img_path}}>Download </a>
           </div>
         </div>
       </div>
@@ -33,6 +35,7 @@
   </section>
   @endforeach
 
+  <!--
    <section class="page-section clearfix">
     <div class="container">
       <div class="intro">
@@ -105,7 +108,7 @@
                 </tbody>
               </table>
        
-    
+        --> 
  
 </div>    
 

@@ -66,6 +66,16 @@ body {
   padding-top: 69px;
 }
 
+.form-control0{
+  border: 1px solid #d5dae2;
+    padding: -29px -22px;
+    margin-bottom: 20px;
+    /* min-height: 17px; */
+    font-size: 13px;
+    /* line-height: 15; */
+    font-weight: normal;
+}
+
 .no_bullets {
   list-style-type: none; /* Remove bullets */
   padding: 0; /* Remove padding */
@@ -90,15 +100,62 @@ body {
   font-weight: 700;
 }
 
+.button1
+{
+    width: 200px;
+    /* padding-left: 200px; */
+    margin-left: 218px;
+    padding: 20px, 10px;
+    height: 50px;
+
+}
+
+.cont{
+
+  width: 618px;
+  margin-left: auto;
+  margin-right: auto;
+ /* max-width: 400px; 
+  margin: auto;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;*/
+} 
+
+.button2{
+  width: 137px;
+  height: 44px;
+}
+
+.left-push{
+  margin-left: 94px;
+    width: 117px;
+}
+
 .background{
   background: linear-gradient(70deg, #7ca7d6, #29a8c9, #196ba7);
 } 
 .margin-top{
   margin-top: 120px;
 }
+
+.plus{
+  padding-left: 30%;
+}
+
+.brand-wrapper0 {
+  margin-bottom: 50px;
+  margin-left: 97px;
+  padding-left: 10%;
+}
+.brand-wrapper0 .logo {
+  height: 37px; }
+
 .brand-wrapper {
   margin-bottom: 50px;
-  margin-left: 97px; }
+  margin-left: 97px;
+}
   .brand-wrapper .logo {
     height: 37px; }
    .logo1 {
@@ -117,7 +174,7 @@ body {
     -o-object-fit: cover;
        object-fit: cover; }
   .login-card .card-body {
-    height: 536px;
+    height: 100%;
     padding: 57px 112px 60px; }
     @media (max-width: 422px) {
       .login-card .card-body {
@@ -138,7 +195,7 @@ body {
     margin-bottom: 20px;
     min-height: 45px;
     font-size: 13px;
-    line-height: 15;
+    /*line-height: 15;*/
     font-weight: normal; }
     .login-card .form-control::-webkit-input-placeholder {
       color: #919aa3; }

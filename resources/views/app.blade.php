@@ -7,16 +7,22 @@
     <title>HyperBdd - app</title>
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+        <script src="/js/vendor/jquery.ui.widget.js"></script>
+        <script src="/js/jquery.iframe-transport.js"></script>
+        <script src="/js/jquery.fileupload.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
         <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
-        <link rel="stylesheet" href="css/login.css">
-        <link rel="stylesheet" href="css/business-casual.css">
-        <link rel="stylesheet" href="css/business-casual.min.css">
+        <link rel="stylesheet" href="/css/login.css">
+        <!--<link rel="stylesheet" href="/css/register.css">-->
+        <link rel="stylesheet" href="/scss/login.scss">
+        <link rel="stylesheet" href="/css/business-casual.css">
+        <link rel="stylesheet" href="/css/business-casual.min.css">
+
+
 
 
         <script>

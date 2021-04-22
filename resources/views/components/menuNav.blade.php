@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="/css/login.css">
 
 
 
@@ -54,10 +54,10 @@
           @endif
 
           <div class="nav-item">
-            <a class="nav-link text-dark font-weight-bold" href="{{route('newBase')}}">Add a new Db</a>
+            <a class="nav-link" style="color:white" href="{{route('newBase')}}">Add a new Db</a>
           </div>
           <div class="nav-item">
-            <a class="nav-link  text-uppercase " style="color:white; margin-left: 647px;" href="#">{{auth()->user()->lastname}}</a>
+            <a class="nav-link  text-uppercase " style="color:white; margin-left: 545px;" href="#">{{auth()->user()->lastname}}</a>
         </div>
 
          <!-- Right -->
@@ -77,7 +77,7 @@
             <form action="{{route('logout')}}" method="post">
               @csrf
                 <button type="submit" class=" button nav-link border border-light rounded " style="color:white">
-                &nbsp;<img src="images/sub.png" style=" height: 19px; width: 20px;">      </img> &nbsp;Logout &nbsp;</button>
+                &nbsp;<img src="/images/sub.png" style=" height: 19px; width: 20px;">      </img> &nbsp;Logout &nbsp;</button>
             </form>
             </ul>
         
