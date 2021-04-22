@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ApplicationType;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Base extends Model
 {
@@ -24,4 +25,9 @@ class Base extends Model
         'index_img_path',
         'bdd_img_path'
     ];
+
+    public function applicationType()
+    {
+        return $this->belongsTo(ApplicationType::class, 'application_types_id', 'id');
+    }
 }

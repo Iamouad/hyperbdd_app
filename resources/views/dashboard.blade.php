@@ -14,6 +14,7 @@
                   <tr>
                     <th scope="col">Db name</th>
                     <th scope="col">Number of images</th>
+                    <th scope="col">Application type</th>
                     <th scope="col">Creation date</th>
 
                     <th scope="col"></th>
@@ -24,6 +25,8 @@
                     <tr>
                         <td>{{$base->dbname}}</td>
                         <td>{{$base->nbimages}}</td>
+                        <td>{{$base->applicationType->application_name}}</td>
+                    
                         <td>{{$base->created_at->diffForHumans()}}</td>
                         <td><a href={{env('DO_REPO_LINK').$base->bdd_img_path}} target="_blank" rel="noopener noreferrer">Download </a></td>
                     </tr>
