@@ -25,5 +25,14 @@ class UsersTablesSeeder extends Seeder
             'remember_token' =>  11,
             'role_id' => 2,
         ]);
+
+        DB::table('users')->insert([
+            'firstname'    => 'alae',
+            'lastname'    => 'kfifat',
+            'email'    => 'alae@gmail.com',
+            'password'   =>  Hash::make('abir2'),
+            'remember_token' =>  11,
+            'role_id' => 2,
+        ]);
     }
 }

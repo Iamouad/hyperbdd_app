@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\imgBase\BaseController;
 use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\DashboardController;
 
 
 /*
@@ -43,3 +44,7 @@ Route::get('/bases/download', [BaseController::class, 'showFile']);
 Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+
+Route::get('dashboard',[DashboardController::class,'show']);
