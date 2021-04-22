@@ -37,17 +37,11 @@ class BaseController extends Controller
 
     }
 
-    public function showFile()
+    public function showFile(Request $request)
     {
-      
-        // if (file_exists($fileurl)) {
-        //     return Response::download($fileurl, 'Photos.zip', array('Content-Type: application/octet-stream','Content-Length: '. filesize($fileurl)))->deleteFileAfterSend(true);
-        // } else {
-        //     return ['status'=>'zip file does not exist'];
-        // }
-
         $link = env('DO_REPO_LINK');
-        return redirect($link.'uploads/1618870755.zip');
+        $path = $request->path;
+        return redirect($link.$path);
     }
 
     public function storeBase(Request $request)

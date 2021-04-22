@@ -8,7 +8,7 @@
 
     @guest
     <div class="nav-item">
-      <a class="nav-link text-dark" href="{{route('register')}}">Register</a>
+      <a class="nav-link text-dark font-weight-bold" href="{{route('register')}}">Register</a>
     </div>
      <div class="nav-item">
       <a class="nav-link text-dark font-weight-bold" href="{{route('login')}}">Login</a>
@@ -25,8 +25,12 @@
     <a class="nav-link text-dark font-weight-bold" href="{{route('users')}}">Users</a>
   </div>
   @endif
-  <div class="nav-item">
-    <a class="nav-link text-dark text-uppercase font-weight-bold" href="#">{{auth()->user()->lastname}}</a>
+ 
+<div class="nav-item">
+  <a class="nav-link text-dark font-weight-bold" href="{{route('newBase')}}">Add a new Db</a>
+</div>
+<div class="nav-item">
+  <a class="nav-link text-dark text-uppercase font-weight-bold" href="{{route('newBase')}}">{{auth()->user()->lastname}}</a>
 </div>
   <div class="nav-item">
     <form action="{{route('logout')}}" method="post">

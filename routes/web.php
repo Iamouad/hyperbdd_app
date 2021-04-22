@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\imgBase\BaseController;
 use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\dashboard\DashboardController;
 
 
 /*
@@ -39,9 +40,10 @@ Route::post('/bases/upload', [BaseController::class, 'uploadBase']);
 
 Route::get('/bases/download', [BaseController::class, 'showFile']);
 
+Route::get('/', [DashboardController::class, 'index'])->name("dashboard");
 
 
 
-Route::get('/', function () {
-    return view('dashboard');
-})->name('dashboard');
+
+
+
