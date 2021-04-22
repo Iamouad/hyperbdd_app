@@ -23,6 +23,6 @@ class ApplicationType extends Model
   
     public function bases()
     {
-        return $this->hasMany(Base::class);
+        return $this->hasMany(Base::class, 'application_types_id', 'id');
     }
 }
