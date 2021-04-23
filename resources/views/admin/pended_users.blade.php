@@ -11,7 +11,7 @@
         @if ($pendedUsers->count() > 0)
     @foreach ($pendedUsers as $user)
          <div id="{{'div'.$user->id}}" class="row">
-            <div class="col p-2"> {{$user->lastname.' '.$user->lastname}}</div>
+            <div class="col p-2"> {{$user->lastname.' '.$user->firstname}}</div>
             <div class="col p-2">{{$user->created_at->diffForHumans()}}</div>
             <div class="col p-2"><button  onclick="approve(this.value)" value="{{$user->id}}" class="btn btn-success">Approve</button></div>
             <div class="col p-2"><button  onclick="reject(this.value)" value="{{$user->id}}" class="btn btn-danger">Reject</button></div>

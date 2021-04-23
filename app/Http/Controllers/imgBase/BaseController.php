@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class BaseController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     //
@@ -85,7 +85,6 @@ class BaseController extends Controller
         }
 
         return redirect()->to('/');
-        //return view('base.form');
     }
 
     public function storeApplicationType(Request $request)
