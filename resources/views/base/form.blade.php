@@ -93,11 +93,22 @@
         </div>
         @enderror
     </div>
+    
+    <div class="form-group">
+        <label for="indexImg">Upload an index image of the database</label>
+        <input type="file" class="form-control @error('indexImg') border border-danger @enderror" style="width: 100%;   height: 100%;" value="{{old('indexImg')}}" id="indexImg" name="indexImg">
+        @error('indexImg')
+        
+        <div class="text-danger mt-2 text-sm">
+            {{$message}}
+        </div>
+        @enderror
+    </div>
 
     <div class="form-group">
         <input type="hidden" name="db_file_name" id="db_file_name"/>
         <label for="file">Upload the database zip file</label>
-        <input type="file" data-url="/bases/upload" class="form-control @error('file') border border-danger @enderror" style="width: 100%;   height: 100%;" value="{{old('file')}}" id="file" name="file" placeholder="Select a file to upload">
+        <input type="file" data-url="/bases/upload" class="form-control @error disabled @enderror" style="width: 100%;   height: 100%;" value="{{old('file')}}" id="file" name="file" placeholder="Select a file to upload">
         <span class="m-2 font-weight-light" id="loading"></span>
         <div id="progress" class="progress-bar form-group">&nbsp;</div>
         @error('file')
@@ -130,6 +141,7 @@ $(document).ready(function(){
     });
 
     $("#submitBtn").prop('disabled',true);
+
     $('#progress').hide().css(
                     'width',
                     '0%'
@@ -152,6 +164,7 @@ $(document).ready(function(){
                 $("#submitBtn").prop('disabled',false);
                 $('#loading').text('File uploaded successfully');
                 $('#db_file_name').val(data.result.path);
+                $("#file").prop('disabled',true);
                
             }
             
@@ -167,7 +180,6 @@ $(document).ready(function(){
         });
   
     function submitApp(userId){
-            //var userId = $('#approveUser').val();
             var CSRF_TOKEN =$('[name="_token"]').val();
             var newApp =$('#newApp').val();
 

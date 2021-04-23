@@ -6,7 +6,7 @@
 
 
   
-  <<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+  <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
     <!-- <div class="container padd"> -->
     <div class="cont">
       <div class="card login-card">

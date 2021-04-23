@@ -54,13 +54,18 @@ class BaseController extends Controller
         $this->validate($request, [
             'dbname' => 'required|max:50',
             'nbimages' => 'required|numeric|min:0',
-            'apptype' => 'required|max:200',
+            'apptype' => 'required|max:100',
             'references' => 'nullable',
             'classification_rate'=>'min:0|numeric|required',
             'description' => 'nullable',
+            'indexImg' => 'required|file|image'
         ]);
 
         try {
+            $indexImg = $request->file('indexImg');
+            $extention = $indexImg->extension();
+            $mimeType = $indexImg->getMimeType();
+            Storage::disk('public')->putFileAs('uploads',$indexImg ,$request->dbname.'.'.$extention);
             //code...
             Base::create([
                 'dbname' => $request->dbname,
@@ -70,6 +75,7 @@ class BaseController extends Controller
                 'description' => $request->description,
                 'classification_rate' => $request->classification_rate,
                 'application_types_id' => $request->apptype,
+                'index_img_path' => 'uploads/'.$request->dbname.'.'.$extention,
                 'bdd_img_path' => $request->db_file_name
             ]);
         } catch (Exception $ex) {
