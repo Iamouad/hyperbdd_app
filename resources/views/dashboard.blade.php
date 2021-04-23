@@ -42,6 +42,11 @@
     </div>
   </section>
   @endforeach
+{{-- Pagination --}}
+<div class="d-flex justify-content-center">
+  {!! $bases->links() !!}
+</div>
+  </main>
 
   <!--
    <section class="page-section clearfix">

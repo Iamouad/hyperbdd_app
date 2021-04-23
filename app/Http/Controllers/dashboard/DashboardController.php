@@ -11,8 +11,7 @@ class DashboardController extends Controller
     //
     public function index()
     {
-        $bases = Base::get();
-        //\dd($bases);
+        $bases = Base::paginate(1);
         return view('dashboard', [
             'bases' => $bases
         ]);
