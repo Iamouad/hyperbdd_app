@@ -42,11 +42,11 @@ class RegisterController extends Controller
 
         }
 
-
-        if(Auth::attempt($request->only('email', 'password'), $request->remember)){
-            return redirect()->route('dashboard');
-        }
-        return redirect()->to('login')->with("status", "This needs to be validated !!");
+        // waiting for admin validation 
+        // if(Auth::attempt($request->only('email', 'password'), $request->remember)){
+        //     return redirect()->route('dashboard');
+        // }
+        return redirect()->to('login')->with("status", "Your account needs to be validated by the administrators !!");
         
 
     }

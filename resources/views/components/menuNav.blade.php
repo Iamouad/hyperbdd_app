@@ -21,43 +21,43 @@
 
         <!-- Left -->
         <ul class="navbar-nav mr-auto">
-            <a class="nav-link" style="color:white" href="{{route('dashboard')}}">Home
+            <a class="nav-link" style="color:white; font-family:cursive; font-weight:bold" href="{{route('dashboard')}}">Home
             </a>
           </li>
           
           <li class="nav-item">
-            <a class="nav-link" style="color:white" href="{{route('dashboard')}}">Dashboard </a>
+            <a class="nav-link" style="color:white; font-family:cursive; font-weight:bold" href="{{route('dashboard')}}">Dashboard </a>
           </li>
          
 
 
           @guest
           <li class="nav-item">
-            <a class="nav-link" style="color:white" href="{{route('register')}}">Register</a>
+            <a class="nav-link" style="color:white; font-family:cursive; font-weight:bold" href="{{route('register')}}">Register</a>
           </li>
           <li class="nav-item">
           <li class="nav-item active">
-            <a class="nav-link" style="color:white" href="{{route('login')}}">Login</a>
+            <a class="nav-link" style="color:white; font-family:cursive; font-weight:bold" href="{{route('login')}}">Login</a>
             <span class="sr-only">(current)</span>
           </li>
           @endguest
 
-                  @auth    
+           @auth    
           
           @if (auth()->user()->isInRole("admin"))
           <div class="nav-item">
-            <a class="nav-link " style="color:white" href="{{route('pending')}}">Pendings</a>
+            <a class="nav-link " style="color:white; font-family:cursive; font-weight:bold" href="{{route('pending')}}">Pendings</a>
           </div>
           <div class="nav-item">
-            <a class="nav-link " style="color:white" href="{{route('users')}}">Users</a>
+            <a class="nav-link " style="color:white; font-family:cursive; font-weight:bold" href="{{route('users')}}">Users</a>
           </div>
           @endif
 
           <div class="nav-item">
-            <a class="nav-link" style="color:white" href="{{route('newBase')}}">Add a new Db</a>
+            <a class="nav-link" style="color:white; font-family:cursive; font-weight:bold" href="{{route('newBase')}}">NewDb</a>
           </div>
           <div class="nav-item">
-            <a class="nav-link  text-uppercase " style="color:white; margin-left: 545px;" href="#">{{auth()->user()->lastname}}</a>
+            <a class="nav-link  text-uppercase " style="color:white;font-family:cursive; font-weight:bold; margin-left: 500px;" href="#">{{auth()->user()->lastname}}</a>
         </div>
 
          <!-- Right -->
@@ -76,8 +76,8 @@
        <ul class="navbar-nav nav-flex-icons">
             <form action="{{route('logout')}}" method="post">
               @csrf
-                <button type="submit" class=" button nav-link border border-light rounded " style="color:white">
-                &nbsp;<img src="/images/sub.png" style=" height: 19px; width: 20px;">      </img> &nbsp;Logout &nbsp;</button>
+                <button type="submit" class="btn nav-link border border-light rounded " style="color:white; font-family:cursive; font-weight:bold">
+                &nbsp;<img src="/images/sub.png" style=" height: 19px;  ">      </img> &nbsp;Logout &nbsp;</button>
             </form>
             </ul>
         

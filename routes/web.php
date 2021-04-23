@@ -41,7 +41,7 @@ Route::post('/bases/upload', [BaseController::class, 'uploadBase']);
 
 Route::get('/bases/download', [BaseController::class, 'showFile']);
 
-Route::get('/', [DashboardController::class, 'index'])->name("dashboard");
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 
 

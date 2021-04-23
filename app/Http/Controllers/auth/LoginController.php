@@ -17,14 +17,18 @@ class LoginController extends Controller
     {
         $this->validate($request, [
             'email' => 'required|email|max:100',
-            'password' => 'required|min:5'
+            'password' => 'required'
 
         ]);
 
         if(Auth::attempt($request->only('email', 'password'), $request->remember)){
+            if(! Auth::user()->validated_by_admin){
+                Auth::logout();
+                return redirect()->to('login')->with("status", "Your account needs to be validated by the administrators !!");
+            }
             return redirect()->route('dashboard');
         }
-        return redirect()->back()->with("status", "This account doesn't exist!!");
+        return redirect()->to('login')->with("status", "This account doesn't exist!!");
         // else{
         //     \dd(Auth::attempt($request->only('email', 'password')));
         // }

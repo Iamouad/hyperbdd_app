@@ -44,7 +44,7 @@
   @endforeach
 {{-- Pagination --}}
 <div class="d-flex justify-content-center">
-  {!! $bases->links() !!}
+  {{ $bases->links() }}
 </div>
   </main>
 

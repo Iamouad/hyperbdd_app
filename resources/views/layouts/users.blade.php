@@ -6,6 +6,7 @@
     <div  class="d-flex justify-content-center">
       @csrf
         <div>
+          @if ($users->count() > 0)
           <table class="table table-responsive">
             <thead class="thead-light">
               <tr>
@@ -35,6 +36,10 @@
               
             </tbody>
           </table>
+          @else
+          <p>You are the only user of this app</p>
+          @endif
+          
         </div>
     </div>
     <script>
