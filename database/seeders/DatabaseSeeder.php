@@ -1,8 +1,10 @@
 <?php
 
 namespace Database\Seeders;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
+use Database\Seeders\RoleSeeder;
+use Database\Seeders\AdminSeeder;
+use Database\Seeders\UsersTablesSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +16,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        Eloquent::unguard();
-        $this->call(UsersTablesSeeder::class);
+        $this->call([
+            RoleSeeder::class,
+            AdminSeeder::class,
+            UsersTablesSeeder::class,        
+            ]);
     }
 }

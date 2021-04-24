@@ -1,11 +1,12 @@
 <?php
 
 namespace Database\Seeders;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Seeder;
 use DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
+
 class UsersTablesSeeder extends Seeder
 {
     /**
@@ -22,8 +23,8 @@ class UsersTablesSeeder extends Seeder
             'lastname'    => 'kfifat',
             'email'    => 'kfifat@gmail.com',
             'password'   =>  Hash::make('abir1'),
-            'remember_token' =>  11,
-            'role_id' => 2,
+            'created_at' =>  now(),
+            'role_id' => 3,
         ]);
 
         DB::table('users')->insert([
@@ -31,8 +32,8 @@ class UsersTablesSeeder extends Seeder
             'lastname'    => 'kfifat',
             'email'    => 'alae@gmail.com',
             'password'   =>  Hash::make('abir2'),
-            'remember_token' =>  11,
-            'role_id' => 2,
+            'created_at' =>  now(),
+            'role_id' => 3,
         ]);
     }
 }

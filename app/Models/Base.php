@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\ApplicationType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,6 +19,7 @@ class Base extends Model
     protected $fillable = [
         'dbname',
         'nbimages',
+        'user_id',
         'references',
         'classification_rate',
         'application_types_id',
@@ -30,4 +32,11 @@ class Base extends Model
     {
         return $this->belongsTo(ApplicationType::class, 'application_types_id', 'id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
 }

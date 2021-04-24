@@ -20,7 +20,7 @@
             <tbody>
                 @foreach ($users as $user)
                 <tr>
-                    <td>{{$user->lastname.' '.$user->lastname}}</td>
+                    <td>{{$user->lastname.' '.$user->firstname}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->created_at->diffForHumans()}}</td>
                     <td>

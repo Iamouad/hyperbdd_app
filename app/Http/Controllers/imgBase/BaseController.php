@@ -6,12 +6,13 @@ use App\Models\Base;
 use Illuminate\Http\Request;
 use App\Models\ApplicationType;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class BaseController extends Controller
 {
     public function __construct(){
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
     //
@@ -70,6 +71,7 @@ class BaseController extends Controller
             Base::create([
                 'dbname' => $request->dbname,
                 'nbimages' => $request->nbimages,
+                'user_id' => Auth::user()->id,
                 'apptype' => $request->apptype,
                 'references' => $request->references,
                 'description' => $request->description,
