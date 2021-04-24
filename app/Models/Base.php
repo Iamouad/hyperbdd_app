@@ -25,7 +25,8 @@ class Base extends Model
         'application_types_id',
         'description',
         'index_img_path',
-        'bdd_img_path'
+        'bdd_img_path',
+        'nb_downloads'
     ];
 
     public function applicationType()

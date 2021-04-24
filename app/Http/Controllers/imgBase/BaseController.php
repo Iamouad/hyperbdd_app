@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class BaseController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     //
@@ -39,6 +39,19 @@ class BaseController extends Controller
         return response()->json($response); 
         //return $path;
 
+    }
+
+    public function deleteBase(Request $request)
+    {
+        $base = Base::find($request->baseId);
+        Storage::disk('do_spaces')->delete($base->bdd_img_path);
+        Storage::disk('public')->delete($base->index_img_path);
+        Base::destroy($base->id);
+        $response = array(
+            'status' => 'success',
+            'msg' => 'destoyed',
+        );
+        return response()->json($response); 
     }
 
     public function showFile(Request $request)
@@ -110,4 +123,19 @@ class BaseController extends Controller
 
         }
     }
+
+    public function incrementDownload(Request $request)
+    {
+        $base = Base::find($request->baseId);
+        $base->nb_downloads = $base->nb_downloads + 1;
+        $base->save();
+        $response = array(
+            'status' => 'success',
+            'nbDownloads' => $base->nb_downloads,
+        );
+       
+        return response()->json($response); 
+    }
+
+    
 }

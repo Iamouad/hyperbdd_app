@@ -34,26 +34,17 @@ Route::post('change-permission', [AdminController::class, 'changePermission']);
 Route::get('/pendings', [AdminController::class, 'pendedUsers'])->name("pending");
 Route::get('/users', [AdminController::class, 'getUsers'])->name("users");
 
-Route::get('/bases/new', [BaseController::class, 'index'])->name("newBase");
-Route::post('add-app-type', [BaseController::class, 'storeApplicationType']);
-Route::post('/bases/new', [BaseController::class, 'storeBase']);
-Route::post('/bases/upload', [BaseController::class, 'uploadBase']);
+Route::get('/bases/new', [BaseController::class, 'index'])->name("newBase")->middleware('auth');
+Route::post('add-app-type', [BaseController::class, 'storeApplicationType'])->middleware('auth');
+Route::post('/bases/new', [BaseController::class, 'storeBase'])->middleware('auth');
+Route::post('/bases/upload', [BaseController::class, 'uploadBase'])->middleware('auth');
+Route::post('delete-base', [BaseController::class, 'deleteBase'])->middleware('auth');
+
+Route::post('increment-download', [BaseController::class, 'incrementDownload']);
+
 
 Route::get('/bases/download', [BaseController::class, 'showFile']);
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-
-
-
-
-
-
-/*Route::get('/', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-
-
-Route::get('dashboard',[DashboardController::class,'show']);*/
 
