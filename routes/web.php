@@ -35,12 +35,14 @@ Route::get('/pendings', [AdminController::class, 'pendedUsers'])->name("pending"
 Route::get('/users', [AdminController::class, 'getUsers'])->name("users");
 
 Route::get('/bases/new', [BaseController::class, 'index'])->name("newBase")->middleware('auth');
+Route::get('/bases/{id}', [BaseController::class, 'baseIndex']);
+
 Route::post('add-app-type', [BaseController::class, 'storeApplicationType'])->middleware('auth');
 Route::post('/bases/new', [BaseController::class, 'storeBase'])->middleware('auth');
 Route::post('/bases/upload', [BaseController::class, 'uploadBase'])->middleware('auth');
 Route::post('delete-base', [BaseController::class, 'deleteBase'])->middleware('auth');
 
-Route::post('increment-download', [BaseController::class, 'incrementDownload']);
+Route::get('increment-download', [BaseController::class, 'incrementDownload']);
 
 
 Route::get('/bases/download', [BaseController::class, 'showFile']);

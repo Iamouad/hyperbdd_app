@@ -11,10 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class BaseController extends Controller
 {
-    public function __construct(){
-        //$this->middleware('auth');
-    }
-
+    
     //
     public function index()
     {
@@ -135,6 +132,17 @@ class BaseController extends Controller
         );
        
         return response()->json($response); 
+    }
+
+    public function baseIndex(Request $request)
+    {
+        $base = Base::find($request->id);
+        if($base){
+            return view('base.baseIndex', [
+                'base' => $base
+            ]);
+        }
+        return \redirect()->back()->withErrors(["Ressource not found"]);
     }
 
     

@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="container" style="width: 900px;">
+<div class="container mb-5 " style="width: 900px;">
       <div class="card login-card" style="    padding-bottom: 43px;" >
 <div class="w-75" style="margin-top: 61px;margin-left: 109px;">
 

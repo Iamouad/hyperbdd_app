@@ -37,6 +37,7 @@ class AdminController extends Controller
             'msg' => $request->message,
         );
         return response()->json($response); 
+        
     }
 
     public function approveUser(Request $request )
