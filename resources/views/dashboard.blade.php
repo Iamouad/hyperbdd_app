@@ -13,8 +13,8 @@
         <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{asset('storage/'.$base->index_img_path)}}" alt="">
         <div class="intro-text left-0 text-center bg-faded p-5 rounded">            
         @else
-        <img class="left img-fluid mb-3 mb-lg-0 rounded" src="{{asset('storage/'.$base->index_img_path)}}" alt="">
-        <div class="intro-text left-0 text-center bg-faded p-5 rounded right">
+        <img class="intro-img0 img-fluid mb-3 mb-lg-0 rounded" src="{{asset('storage/'.$base->index_img_path)}}" alt="">
+        <div class="intro-text0 left-0 text-center bg-faded p-5 rounded">
         @endif
       
           <h2 class="section-heading mb-4">

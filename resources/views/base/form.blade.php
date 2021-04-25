@@ -108,7 +108,7 @@
     <div class="form-group">
         <input type="hidden" name="db_file_name" id="db_file_name"/>
         <label for="file">Upload the database zip file</label>
-        <input type="file" data-url="/bases/upload" class="form-control @error disabled @enderror" style="width: 100%;   height: 100%;" value="{{old('file')}}" id="file" name="file" placeholder="Select a file to upload">
+        <input type="file" data-url="/bases/upload" class="form-control" style="width: 100%;   height: 100%;" value="{{old('file')}}" id="file" name="file" placeholder="Select a file to upload">
         <span class="m-2 font-weight-light" id="loading"></span>
         <div id="progress" class="progress-bar form-group">&nbsp;</div>
         @error('file')
