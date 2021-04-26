@@ -70,6 +70,11 @@ class User extends Authenticatable
         }
     }
 
+    public function isOwner($base)
+    {
+        return $this->id == $base->user_id;
+    }
+
     public function role()
     {
         return $this->belongsTo(Role::class);

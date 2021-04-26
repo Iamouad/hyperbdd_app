@@ -67,7 +67,7 @@ class BaseController extends Controller
             'nbimages' => 'required|numeric|min:0',
             'apptype' => 'required|max:100',
             'references' => 'nullable',
-            'classification_rate'=>'min:0|numeric|required',
+            'classification_rate'=>'min:0|max:100|numeric|required',
             'description' => 'nullable',
             'indexImg' => 'required|file|image'
         ]);

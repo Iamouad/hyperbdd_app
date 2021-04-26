@@ -14,7 +14,7 @@
        <div class="intro-text left-0 text-center bg-faded p-5 rounded btn" onclick="changeWindow({{$base->id}})">            
        @else
        <img class="left img-fluid mb-3 mb-lg-0 rounded" src="{{asset('storage/'.$base->index_img_path)}}" alt="">
-       <div class="intro-text left-0 text-center bg-faded p-5 rounded right" onclick="changeWindow({{$base->id}})">
+       <div class="intro-text left-0 text-center bg-faded p-5 rounded right btn" onclick="changeWindow({{$base->id}})">
        @endif
      
          <h2 class="section-heading mb-4 btn" >
@@ -23,22 +23,22 @@
 
          
          <ul class="no_bullets ">
-           <li class=" flex"><p class="left01">Creation date : </p> <p>{{$base['created_at']->diffForHumans()}}</p>
+           <li class="m-2 flex"><span class="badge p-2 mx-2 badge-primary">Creation date </span> <span>{{$base['created_at']->diffForHumans()}}</span>
            </li>
-           <li class=" flex"><p class="left01">Application type : </p> <p>{{$base->applicationType->application_name}}</p>
+           <li class="m-2 flex"><span class="badge p-2 mx-2  badge-secondary">Application type </span> <span>{{$base->applicationType->application_name}}</span>
            </li>
-           <li class="flex"><p class="left00">Number of images : </p> <p> {{$base['nbimages']}} </p>
+           <li class="flex m-2"><span class="badge p-2 mx-2 badge-light">Number of images</span> <span> {{$base['nbimages']}} </span>
            </li>
-           <li class=" flex"><p class="left01">Number of downloads : </p> <p id={{'downloads'.$base->id}}>{{$base['nb_downloads']}}</p>
+           <li class=" flex m-2"><span class="badge p-2 mx-2 badge-dark">Number of downloads</span> <span id={{'downloads'.$base->id}}>{{$base['nb_downloads']}}</span>
            </li>
-           <li  class=" flex" > <p class="left02">Description : </p><p class="d-inline-block text-truncate" style="max-width: 250px;">{{$base['description']}}</p>
+           <li  class=" flex m-2" > <span class="badge p-2 mx-2 badge-info">Description </span><span class="d-inline-block text-truncate" style="max-width: 250px;">{{$base['description']}}</span>
            </li>
        
          </ul>
          <div class="intro-button mx-auto">
            <a class="btn btn-primary btn-lg" onclick="incrementDownload({{$base->id}})" href={{env('DO_REPO_LINK').$base->bdd_img_path}}>Download </a>
            @auth
-           @if (auth()->user()->isInRole("admin"))
+           @if (auth()->user()->isInRole("admin") || auth()->user()->isOwner($base))
            <a class="btn btn-danger btn-lg" onclick="deleteBase({{$base->id}})" href="#">Delete </a>
            @endauth
            
