@@ -76,7 +76,8 @@ class BaseController extends Controller
             $indexImg = $request->file('indexImg');
             $extention = $indexImg->extension();
             $mimeType = $indexImg->getMimeType();
-            Storage::disk('public')->putFileAs('uploads',$indexImg ,$request->dbname.'.'.$extention);
+            $time = time();
+            Storage::disk('public')->putFileAs('uploads',$indexImg ,$time.'.'.$extention);
             //code...
             Base::create([
                 'dbname' => $request->dbname,
@@ -87,7 +88,7 @@ class BaseController extends Controller
                 'description' => $request->description,
                 'classification_rate' => $request->classification_rate,
                 'application_types_id' => $request->apptype,
-                'index_img_path' => 'uploads/'.$request->dbname.'.'.$extention,
+                'index_img_path' => 'uploads/'.$time.'.'.$extention,
                 'bdd_img_path' => $request->db_file_name
             ]);
         } catch (Exception $ex) {
