@@ -76,9 +76,11 @@ class BaseController extends Controller
             $indexImg = $request->file('indexImg');
             $extention = $indexImg->extension();
             $mimeType = $indexImg->getMimeType();
+
             /*$myvalue = $request->dbname;
             $arr = explode(' ',trim($myvalue));*/
             //echo $arr[0];
+
             $time = time();
             Storage::disk('public')->putFileAs('uploads',$indexImg ,$time.'.'.$extention);
             //code...
