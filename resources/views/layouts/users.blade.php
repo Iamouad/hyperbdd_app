@@ -1,18 +1,18 @@
 @extends('app')
 
 @section('content')
-<h2 style="text-align:center; margin:6px">Users & roles</h2>
+<h1 style="text-align:center; margin:6px;">Users & roles</h1>
 
     <div  class="d-flex justify-content-center">
       @csrf
         <div>
           @if ($users->count() > 0)
-          <table class="table table-responsive">
-            <thead class="thead-light">
+          <table class="table table-responsive text-white">
+            <thead class="thead">
               <tr>
-                <th scope="col">Username</th>
+                <th scope="col">Full name</th>
                 <th scope="col">Email</th>
-                <th scope="col">Joined</th>
+                <th scope="col">Join date</th>
                 <th scope="col">Role</th>
             
               </tr>
@@ -20,7 +20,7 @@
             <tbody>
                 @foreach ($users as $user)
                 <tr>
-                    <td>{{$user->lastname.' '.$user->lastname}}</td>
+                    <td>{{$user->lastname.' '.$user->firstname}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->created_at->diffForHumans()}}</td>
                     <td>

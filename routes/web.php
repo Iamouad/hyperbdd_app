@@ -35,6 +35,7 @@ Route::post('change-permission', [AdminController::class, 'changePermission']);
 Route::get('/pendings', [AdminController::class, 'pendedUsers'])->name("pending");
 Route::get('/users', [AdminController::class, 'getUsers'])->name("users");
 
+
 Route::get('/bases/new', [BaseController::class, 'index'])->name("newBase");
 Route::post('add-app-type', [BaseController::class, 'storeApplicationType']);
 Route::post('/bases/new', [BaseController::class, 'storeBase']);
@@ -53,12 +54,19 @@ Route::post('/list/action', [SearchController::class, 'action'])->name('list.act
 Route::get('/live_search/action', 'LiveSearch@action')->name('live_search.action');*/
 //Route::get('/','SearchController@index');
 
+Route::get('/bases/new', [BaseController::class, 'index'])->name("newBase")->middleware('auth');
+Route::get('/bases/{id}', [BaseController::class, 'baseIndex']);
 
-/*Route::get('/', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::post('add-app-type', [BaseController::class, 'storeApplicationType'])->middleware('auth');
+Route::post('/bases/new', [BaseController::class, 'storeBase'])->middleware('auth');
+Route::post('/bases/upload', [BaseController::class, 'uploadBase'])->middleware('auth');
+Route::post('delete-base', [BaseController::class, 'deleteBase'])->middleware('auth');
+
+Route::get('increment-download', [BaseController::class, 'incrementDownload']);
+
+
+Route::get('/bases/download', [BaseController::class, 'showFile']);
 
 
 
-Route::get('dashboard',[DashboardController::class,'show']);*/
 

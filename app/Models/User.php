@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Base;
 use App\Models\Role;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -72,5 +73,10 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function bases()
+    {
+        return $this->hasMany(Base::class);
     }
 }

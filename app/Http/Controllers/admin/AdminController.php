@@ -5,8 +5,10 @@ namespace App\Http\Controllers\admin;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Mail\AccountValidated;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -35,6 +37,7 @@ class AdminController extends Controller
             'msg' => $request->message,
         );
         return response()->json($response); 
+        
     }
 
     public function approveUser(Request $request )
@@ -46,6 +49,8 @@ class AdminController extends Controller
             'status' => 'success',
             'msg' => $request->message,
         );
+       
+        Mail::to($user)->send(new AccountValidated($user->firstname));
         return response()->json($response); 
     }
 

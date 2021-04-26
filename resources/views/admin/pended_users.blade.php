@@ -11,10 +11,10 @@
         @if ($pendedUsers->count() > 0)
     @foreach ($pendedUsers as $user)
          <div id="{{'div'.$user->id}}" class="row">
-            <div class="col p-2"> {{$user->lastname.' '.$user->lastname}}</div>
-            <div class="col p-2">{{$user->created_at->diffForHumans()}}</div>
-            <div class="col p-2"><button  onclick="approve(this.value)" value="{{$user->id}}" class="btn btn-success">Approve</button></div>
-            <div class="col p-2"><button  onclick="reject(this.value)" value="{{$user->id}}" class="btn btn-danger">Reject</button></div>
+            <div class="col p-2" style="font-weight:bold; font-family:cursive; color:white" > {{$user->lastname.' '.$user->firstname}}</div>
+            <div class="col p-2" style="font-weight:bold; font-family:cursive; color:white">{{$user->created_at->diffForHumans()}}</div>
+            <div class="col p-2" style="font-weight:bold; font-family:cursive; color:white"><button  onclick="approve(this.value)" value="{{$user->id}}" class="btn btn-success">Approve</button></div>
+            <div class="col p-2" style="font-weight:bold; font-family:cursive; color:white"><button  onclick="reject(this.value)" value="{{$user->id}}" class="btn btn-danger">Reject</button></div>
             
         </div>
     @endforeach
@@ -27,7 +27,6 @@
 <script>
   
     function approve(userId){
-            //var userId = $('#approveUser').val();
             var CSRF_TOKEN =$('[name="_token"]').val();
             $.ajax({
                 url:'/approve-user',
@@ -35,13 +34,9 @@
                 dataType: 'json',
                  data: {'userId': userId, _token: CSRF_TOKEN},
                 success: function (result, status) {
-
-                    console.log(result)
                     $('#div'+userId).remove();
-                    //location.reload()
                 },
                 error : function(result, status, error){
-                    console.log(error)
                     console.log(CSRF_TOKEN)
 
                 }
@@ -51,7 +46,6 @@
         }
 
         function reject(userId){
-           // var userId = $('#rejectUser').val();
             var CSRF_TOKEN =$('[name="_token"]').val();
             $.ajax({
                 url:'/reject-user',
@@ -60,12 +54,9 @@
                  data: {'userId': userId, _token: CSRF_TOKEN},
                 success: function (result, status) {
                     $('#div'+userId).remove();
-                    console.log(result)
-                    //location.reload()
                 },
                 error : function(result, status, error){
                     console.log(error)
-                    console.log(CSRF_TOKEN)
 
                 }
             

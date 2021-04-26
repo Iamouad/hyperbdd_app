@@ -6,14 +6,12 @@ use App\Models\Base;
 use Illuminate\Http\Request;
 use App\Models\ApplicationType;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class BaseController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth');
-    }
-
+    
     //
     public function index()
     {
@@ -38,6 +36,19 @@ class BaseController extends Controller
         return response()->json($response); 
         //return $path;
 
+    }
+
+    public function deleteBase(Request $request)
+    {
+        $base = Base::find($request->baseId);
+        Storage::disk('do_spaces')->delete($base->bdd_img_path);
+        Storage::disk('public')->delete($base->index_img_path);
+        Base::destroy($base->id);
+        $response = array(
+            'status' => 'success',
+            'msg' => 'destoyed',
+        );
+        return response()->json($response); 
     }
 
     public function showFile(Request $request)
@@ -65,21 +76,22 @@ class BaseController extends Controller
             $indexImg = $request->file('indexImg');
             $extention = $indexImg->extension();
             $mimeType = $indexImg->getMimeType();
-            $myvalue = $request->dbname;
-            $arr = explode(' ',trim($myvalue));
+            /*$myvalue = $request->dbname;
+            $arr = explode(' ',trim($myvalue));*/
             //echo $arr[0];
-
-            Storage::disk('public')->putFileAs('uploads',$indexImg ,$arr[0].'.'.$extention);
+            $time = time();
+            Storage::disk('public')->putFileAs('uploads',$indexImg ,$time.'.'.$extention);
             //code...
             Base::create([
                 'dbname' => $request->dbname,
                 'nbimages' => $request->nbimages,
+                'user_id' => Auth::user()->id,
                 'apptype' => $request->apptype,
                 'references' => $request->references,
                 'description' => $request->description,
                 'classification_rate' => $request->classification_rate,
                 'application_types_id' => $request->apptype,
-                'index_img_path' => 'uploads/'.$arr[0].'.'.$extention,
+                'index_img_path' => 'uploads/'.$time.'.'.$extention,
                 'bdd_img_path' => $request->db_file_name
             ]);
         } catch (Exception $ex) {
@@ -89,7 +101,6 @@ class BaseController extends Controller
         }
 
         return redirect()->to('/');
-        //return view('base.form');
     }
 
     public function storeApplicationType(Request $request)
@@ -113,4 +124,30 @@ class BaseController extends Controller
 
         }
     }
+
+    public function incrementDownload(Request $request)
+    {
+        $base = Base::find($request->baseId);
+        $base->nb_downloads = $base->nb_downloads + 1;
+        $base->save();
+        $response = array(
+            'status' => 'success',
+            'nbDownloads' => $base->nb_downloads,
+        );
+       
+        return response()->json($response); 
+    }
+
+    public function baseIndex(Request $request)
+    {
+        $base = Base::find($request->id);
+        if($base){
+            return view('base.baseIndex', [
+                'base' => $base
+            ]);
+        }
+        return \redirect()->back()->withErrors(["Ressource not found"]);
+    }
+
+    
 }

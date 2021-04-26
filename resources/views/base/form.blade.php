@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="container" style="width: 900px;">
+<div class="container mb-5 " style="width: 900px;">
       <div class="card login-card" style="    padding-bottom: 43px;" >
 <div class="w-75" style="margin-top: 61px;margin-left: 109px;">
 
@@ -108,7 +108,9 @@
     <div class="form-group">
         <input type="hidden" name="db_file_name" id="db_file_name"/>
         <label for="file">Upload the database zip file</label>
+
         <input type="file" data-url="/bases/upload" class="form-control" style="width: 100%;   height: 100%;" value="{{old('file')}}" id="file" name="file" placeholder="Select a file to upload">
+
         <span class="m-2 font-weight-light" id="loading"></span>
         <div id="progress" class="progress-bar form-group">&nbsp;</div>
         @error('file')
@@ -117,7 +119,7 @@
             {{$message}}
         </div>
         @enderror
-    </div>
+    </div> 
     
     <div class="mt-2">
         <button type="submit" id="submitBtn" class="btn btn-md btn-primary button1" >Submit</button>
@@ -125,7 +127,7 @@
   </form>
 </div>
 </div>
-      </div>
+</div>
 <script>
 
 $(document).ready(function(){
