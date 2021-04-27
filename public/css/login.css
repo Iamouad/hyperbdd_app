@@ -3,6 +3,26 @@
   background-image: url("../images/blue1.jpg");
 }
 
+
+.card-space0
+{
+  margin-left: 16px;
+  margin-right: 18px;
+  width: 21rem;
+}
+.card-space
+{
+  margin-right: 18px;
+  width: 21rem;
+}
+
+.card-space1
+{
+  margin-left: auto;
+  margin-right: auto;
+  width: 1041px;
+}
+
 .btn-primary {
   background-color: #1b72ab;
   border-color: #196ca8;
@@ -51,6 +71,11 @@
   padding-bottom: 12px;
 }
 
+.color-title
+{
+  color: #203e4a;
+}
+
 .flex{
   display: flex;
 }
@@ -76,6 +101,11 @@ body {
     font-weight: normal;
 }
 
+.error{
+  padding-top: 10px;
+    padding-left: 18px;
+    color: #dc3545;
+}
 .no_bullets {
   list-style-type: none; /* Remove bullets */
   padding: 0; /* Remove padding */

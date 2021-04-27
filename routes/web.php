@@ -7,8 +7,9 @@ use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\imgBase\BaseController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\dashboard\DashboardController;
-//use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\LiveSearch;
+use App\Http\Controllers\AutocompleteController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,25 @@ Route::post('change-permission', [AdminController::class, 'changePermission']);
 Route::get('/pendings', [AdminController::class, 'pendedUsers'])->name("pending");
 Route::get('/users', [AdminController::class, 'getUsers'])->name("users");
 
+
+Route::get('/bases/new', [BaseController::class, 'index'])->name("newBase");
+Route::post('add-app-type', [BaseController::class, 'storeApplicationType']);
+Route::post('/bases/new', [BaseController::class, 'storeBase']);
+Route::post('/bases/upload', [BaseController::class, 'uploadBase']);
+
+Route::get('/bases/download', [BaseController::class, 'showFile']);
+
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('/autocomplete', [AutocompleteController::class, 'index']);
+Route::post('/autocomplete/fetch', [AutocompleteController::class, 'fetch'])->name('autocomplete.fetch');
+
+Route::get('/list', [SearchController::class, 'index']);
+Route::post('/list/action', [SearchController::class, 'action'])->name('list.action');
+/*Route::get('/live_search', 'LiveSearch@index');
+Route::get('/live_search/action', 'LiveSearch@action')->name('live_search.action');*/
+//Route::get('/','SearchController@index');
+
 Route::get('/bases/new', [BaseController::class, 'index'])->name("newBase")->middleware('auth');
 Route::get('/bases/{id}', [BaseController::class, 'baseIndex']);
 
@@ -47,6 +67,6 @@ Route::get('increment-download', [BaseController::class, 'incrementDownload']);
 
 Route::get('/bases/download', [BaseController::class, 'showFile']);
 
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
 
 
