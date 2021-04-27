@@ -52,20 +52,20 @@
            <a class="btn btn-danger btn-lg" onclick="deleteBase({{$base->id}})" href="#">Delete </a>
 ======= --}}
    <div id=hide_part>
-   @foreach($bases as $key=>$bas)
+   @foreach($bases as $key=>$base)
    <section class="page-section clearfix">
     <div class="container">
       <div class="intro">
         @if(++$key %2 != 0)
-        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{asset('storage/'.$bas->index_img_path)}}" alt="">
-        <div class="intro-text left-0 text-center bg-faded p-5 rounded" onclick="changeWindow({{$bas->id}})">            
+        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{asset('storage/'.$base->index_img_path)}}" alt="">
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded btn" onclick="changeWindow({{$base->id}})">            
         @else
-        <img class="intro-img0 img-fluid mb-3 mb-lg-0 rounded" src="{{asset('storage/'.$bas->index_img_path)}}" alt="">
-        <div class="intro-text0 left-0 text-center bg-faded p-5 rounded" style="height: 346px;" onclick="changeWindow({{$bas->id}})">
+        <img class="intro-img0 img-fluid mb-3 mb-lg-0 rounded" src="{{asset('storage/'.$base->index_img_path)}}" alt="">
+        <div class="intro-text0 left-0 text-center bg-faded p-5 rounded btn" style="height: 346px;" onclick="changeWindow({{$base->id}})">
         @endif
       
           <h2 class="section-heading mb-4">
-            <span class="section-heading-lower">{{$bas->dbname}}</span>
+            <span class="section-heading-lower">{{$base->dbname}}</span>
           </h2>
 
           

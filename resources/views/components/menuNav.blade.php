@@ -57,7 +57,7 @@
             <a class="nav-link" style="color:white;" href="{{route('newBase')}}">NewDb</a>
           </div>
           <div class="nav-item">
-            <a class="nav-link  text-uppercase " style="color:white; margin-left: 592px;" href="#">{{auth()->user()->lastname}}</a>
+            <a class="nav-link  text-uppercase " style="color:white; margin-left: 530px;" href="#">{{auth()->user()->lastname}}</a>
         </div>
 
          <!-- Right -->
@@ -76,7 +76,7 @@
        <ul class="navbar-nav nav-flex-icons">
             <form action="{{route('logout')}}" method="post">
               @csrf
-                <button type="submit" class="btn nav-link border border-light rounded " style="color:white; ">
+                <button type="submit" class="btn btn-sm nav-link border border-light rounded " style="color:white; ">
                 &nbsp;<img src="/images/sub.png" style=" height: 19px;  ">      </img> &nbsp;Logout &nbsp;</button>
             </form>
             </ul>

@@ -71,7 +71,7 @@
       <br>
       <br>
 
-      <div class="card card-space1" >
+      <div class="card card-space1 " >
           <div class="card-body">
             <h5 class="card-title">Description </h5>
                <p class="card-text">{{$base['description']}}</p>
@@ -94,7 +94,7 @@
          
          
          <div class="intro-button mx-auto">
-           <a class="btn btn-primary btn-xl" style="width: 144px;" onclick="incrementDownload({{$base->id}})" href={{env('DO_REPO_LINK').$base->bdd_img_path}}>Download </a>
+           <a class="btn btn-primary btn-lg"  onclick="incrementDownload({{$base->id}})" href={{env('DO_REPO_LINK').$base->bdd_img_path}}>Download </a>
            @auth
 {{-- <<<<<<< HEAD --}}
            @if (auth()->user()->isInRole("admin") || auth()->user()->isOwner($base))
