@@ -56,6 +56,8 @@ Route::get('/live_search/action', 'LiveSearch@action')->name('live_search.action
 
 Route::get('/bases/new', [BaseController::class, 'index'])->name("newBase")->middleware('auth');
 Route::get('/bases/{id}', [BaseController::class, 'baseIndex']);
+Route::get('/bases/user/{user_id}', [BaseController::class, 'userBases']);
+
 
 Route::post('add-app-type', [BaseController::class, 'storeApplicationType'])->middleware('auth');
 Route::post('/bases/new', [BaseController::class, 'storeBase'])->middleware('auth');

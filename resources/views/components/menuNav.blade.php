@@ -57,7 +57,7 @@
             <a class="nav-link" style="color:white;" href="{{route('newBase')}}">NewDb</a>
           </div>
           <div class="nav-item">
-            <a class="nav-link  text-uppercase " style="color:white; margin-left: 530px;" href="#">{{auth()->user()->lastname}}</a>
+            <a class="nav-link  text-uppercase " style="color:white; margin-left: 530px;" href={{'/bases/user/'.auth()->user()->id}}>{{auth()->user()->lastname}}</a>
         </div>
 
          <!-- Right -->

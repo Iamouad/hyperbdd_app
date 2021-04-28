@@ -131,6 +131,7 @@
 <script>
 
 $(document).ready(function(){
+    console.log('hello')
     $('#divApp').hide();
     $('#newAppBtn').click(function(e) {
         e.preventDefault();

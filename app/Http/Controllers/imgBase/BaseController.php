@@ -151,5 +151,16 @@ class BaseController extends Controller
         return \redirect()->back()->withErrors(["Ressource not found"]);
     }
 
+    public function userBases(Request $request)
+    {
+        $bases = Base::where('user_id', $request->user_id)->paginate(2);
+        if($bases){
+            return view('base.userBases', [
+                'bases' => $bases
+            ]);
+        }
+        return \redirect()->back()->withErrors(["Ressource not found"]);
+    }
+
     
 }

@@ -6,7 +6,7 @@
 <main > 
   @if ($base)
 
-  <section class="page-section clearfix">
+  <section class="page-section clearfix" id="{{'section'.$base->id}}">
    <div class="container">
 
      <div class="intro" >
@@ -27,7 +27,7 @@
         <div class="card card-space" >
           <div class="card-body">
             <h5 class="card-title">Published by  </h5>
-               <p class="card-text">{{$base->user->firstname.' '.$base->user->lastname}}</p>
+               <a href="{{'/bases/user/'.$base->user->id}}" class="card-text">{{$base->user->firstname.' '.$base->user->lastname}}</a>
  
          </div>
         </div>
@@ -71,7 +71,7 @@
       <br>
       <br>
 
-      <div class="card card-space1 " >
+      <div class="card card-space1" >
           <div class="card-body">
             <h5 class="card-title">Description </h5>
                <p class="card-text">{{$base['description']}}</p>

@@ -55,20 +55,20 @@ class SearchController extends Controller
                       
                       else {
                        
-                          $output = '    <section class="page-section clearfix">
+                          $output = '<section class="page-section clearfix">
                           <div class="container">
                           <div class="intro"> 
                           <img class="intro-img0 img-fluid mb-3 mb-lg-0 rounded" src=' .asset("storage/".$base->index_img_path).'>
-                          <div class="intro-text0 left-0 text-center bg-faded p-5 rounded btn " style="height: 346px;" onclick="changeWindow('.$base->id. ')" >  '  ;   }
+                          <div class="intro-text0 left-0 text-center bg-faded p-5 rounded btn" style="height: 346px;" onclick="changeWindow('.$base->id. ')" >  '  ;   }
                               
                       $output .= ' <h2 class="section-heading mb-4"> <span class="section-heading-lower">'.$base->dbname. ' </span>
                       </h2>';
 
 
                       $output .= ' <ul class="no_bullets ">';
-                      $output .= '<li class=" flex m-2"><span class="badge p-2 mx-2 badge-primary">Creation Date  </span> <span>'.$base->created_at->diffForHumans(). ' </span>
+                      $output .= '<li class=" flex m-2"><span class="badge p-2 mx-2 badge-primary">Creation Date  </span> <span>'.$base->created_at. ' </span>
                       </li>';
-                      $output .= '<li class=" flex m-2"><span class="badge p-2 mx-2  badge-secondary">Application Type </span> <span>'.$base->applicationType->application_name. ' </span>
+                      $output .= '<li class=" flex m-2"><span class="badge p-2 mx-2  badge-secondary">Application Type </span> <span>'.ApplicationType::where('id',$base->application_types_id )->pluck('application_name')[0] . ' </span>
                       </li>';
                       $output .= '<li class=" flex m-2"><span class="badge p-2 mx-2 badge-light">Number of Images </span> <span>'.$base->nbimages. ' </span>
                       </li>';
@@ -90,7 +90,7 @@ class SearchController extends Controller
            
 
                   
-                   $output .= ' </div>
+                   $output .= '</div>
                       </div>
                       </div>
                     </div>
