@@ -30,7 +30,7 @@ class BaseController extends Controller
         $file = $request->file('fileupload');
         $extention = $file->extension();
         $mimeType = $file->getMimeType();
-        $fileName = $file->getClientOriginalName();
+        $fileName =str_replace(' ', '', $file->getClientOriginalName()) ;
         //upload in the cloud
         $path = Storage::disk('do_spaces')->putFileAs('uploads/user'.Auth::user()->id, $file, $fileName, 'public');
         //upload in an ftp server
@@ -118,7 +118,8 @@ class BaseController extends Controller
     public function findBase(Request $request)
     {
         # code...
-        $file = 'uploads/user'.Auth::user()->id.'/'.$request->file;
+        $fileName = str_replace(' ', '',$request->file);
+        $file = 'uploads/user'.Auth::user()->id.'/'.$fileName;
         $size = null;
         if(Storage::disk('do_spaces')->exists($file)){
             $size = Storage::disk('do_spaces')->size($file);
