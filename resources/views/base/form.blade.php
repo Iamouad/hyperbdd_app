@@ -109,11 +109,11 @@
         <input type="hidden" name="db_file_name" id="db_file_name"/>
         <label for="file">Upload the database zip file</label>
 
-        <input type="file" data-url="/bases/upload" class="form-control" style="width: 100%;   height: 100%;" value="{{old('file')}}" id="file" name="file" placeholder="Select a file to upload">
+        <input type="file" data-url="/bases/upload" class="form-control" style="width: 100%;   height: 100%;" value="{{old('fileupload')}}" id="fileupload" name="fileupload" placeholder="Select a file to upload">
 
         <span class="m-2 font-weight-light" id="loading"></span>
         <div id="progress" class="progress-bar form-group">&nbsp;</div>
-        @error('file')
+        @error('fileupload')
         
         <div class="text-danger mt-2 text-sm">
             {{$message}}
@@ -130,8 +130,17 @@
 </div>
 <script>
 
+    function checkFileExtention() {
+        var validExtensions = ["zip"]
+        var fileSplit = $(this).val().split('.').pop();
+        if (validExtensions.indexOf(fileSplit) == -1) {
+            alert("Only formats are allowed : "+validExtensions.join(', '));
+            return false;
+        }
+        return true;
+    }
+
 $(document).ready(function(){
-    console.log('hello')
     $('#divApp').hide();
     $('#newAppBtn').click(function(e) {
         e.preventDefault();
@@ -150,37 +159,108 @@ $(document).ready(function(){
                     '0%'
                 );
 
-    
-    $('#file').fileupload({
-            dataType: 'json',
-            maxChunkSize: 10000000,
-            add: function (e, data) {
-                $('#loading').text('Uploading...');
-                $('#progress').hide().css(
-                    'width',
-                    '0%'
-                );
-
-                data.submit();
-            },
-            done: function (e, data) {
-                $("#submitBtn").prop('disabled',false);
-                $('#loading').text('File uploaded successfully');
-                $('#db_file_name').val(data.result.path);
-                $("#file").prop('disabled',true);
-               
-            }
-            
-        }); 
-    
-}).on('fileuploadprogressall', function (e, data) {
+    $('#fileupload').fileupload({
+    maxRetries: 100,
+    retryTimeout: 500,
+    // add: function (e, data) {
+    //     var CSRF_TOKEN = $('[name="_token"]').val();
+    //     var that = this;
+    //     $.getJSON('/find-file', {file: data.files[0].name, _token: CSRF_TOKEN}, function (result) {
+    //         console.log(result)
+    //         //var file = result.file;
+    //         data.uploadedBytes = Number(result.size);
+    //         $.blueimp.fileupload.prototype
+    //             .options.add.call(that, e, data);
+    //     });
+    // },
+    done: function (e, data) {
+        $("#submitBtn").prop('disabled',false);
+        $('#loading').text('File uploaded successfully');
+        $('#db_file_name').val(data.result.path);
+        $("#fileupload").prop('disabled',true);
         
-            var progress = parseInt(data.loaded / data.total * 100, 10);
+    },
+    fail: function (e, data) {
+        console.log('upload failed')
+        $('#loading').text('Upload failed Try again');
+        $("#fileupload").prop('disabled',false);
+        $('#progress').css(
+            'width',
+            '0%'
+        );
+        // jQuery Widget Factory uses "namespace-widgetname" since version 1.10.0:
+        var fu = $(this).data('blueimp-fileupload') || $(this).data('fileupload'),
+            retries = data.context.data('retries') || 0,
+            retry = function () {
+                var CSRF_TOKEN = $('[name="_token"]').val();
+                $.getJSON('/find-file', {file: data.files[0].name, _token: CSRF_TOKEN})
+                    .done(function (result) {
+                        console.log(result)
+                        console.log(result.size, 'resumining upload')
+                        data.uploadedBytes = Number(result.size);
+                        // clear the previous data:
+                        data.data = null;
+                        data.submit();
+                    })
+                    .fail(function () {
+                        fu._trigger('fail', e, data);
+                    });
+            };
+        if (data.errorThrown !== 'abort' &&
+                data.uploadedBytes < data.files[0].size &&
+                retries < fu.options.maxRetries) {
+            retries += 1;
+            data.context.data('retries', retries);
+            window.setTimeout(retry, retries * fu.options.retryTimeout);
+            return;
+        }
+        data.context.removeData('retries');
+        $.blueimp.fileupload.prototype
+            .options.fail.call(this, e, data);
+    }
+}).on('fileuploadprogressall', function (e, data) {
+    $("#fileupload").prop('disabled',true);
+
+    var loadedData = parseInt(data.loaded / data.total * 100, 10);
+    $('#loading').text('Uploading... '+ loadedData+'%');
+            var progress = parseInt(loadedData, 10);
             $('#progress').show().css(
                 'width',
                 progress + '%'
-            );
-        });
+            );})
+     
+//     $('#file').fileupload({
+//             dataType: 'json',
+//             maxChunkSize: 10000000,
+//             maxRetries: 100,
+//             retryTimeout: 500,
+//             add: function (e, data) {
+//                 $('#loading').text('Uploading...');
+//                 $('#progress').hide().css(
+//                     'width',
+//                     '0%'
+//                 );
+
+//                 data.submit();
+//             },
+//             done: function (e, data) {
+//                 $("#submitBtn").prop('disabled',false);
+//                 $('#loading').text('File uploaded successfully');
+//                 $('#db_file_name').val(data.result.path);
+//                 $("#file").prop('disabled',true);
+               
+//             }
+            
+//         }); 
+    
+// }).on('fileuploadprogressall', function (e, data) {
+        
+//             var progress = parseInt(data.loaded / data.total * 100, 10);
+//             $('#progress').show().css(
+//                 'width',
+//                 progress + '%'
+//             );
+         });
   
     function submitApp(userId){
             var CSRF_TOKEN =$('[name="_token"]').val();

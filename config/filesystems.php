@@ -61,6 +61,23 @@ return [
             'url' => env('DO_URL'),
             'endpoint' => env('DO_ENDPOINT'),
         ],
+        'eil-ftp' => [
+				
+            'driver' => 'ftp',
+						
+            'host' => '127.0.0.1',
+						
+            'username' => 'mouad',
+						
+            'password' => 'admin',
+
+            // Optional FTP Settings...
+            // 'port'     => 21,
+            // 'root' => '/Example',
+            // 'passive'  => true,
+            // 'ssl'      => true,
+            // 'timeout'  => 30,
+        ],
 
     ],
 

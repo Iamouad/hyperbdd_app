@@ -81,7 +81,7 @@ class SearchController extends Controller
 
                     $output .= '<div class="intro-button mx-auto">';
                     
-                    $output .= ' <a class="btn btn-primary btn-lg mx-1" onclick="incrementDownload('.$base->id.')"  href=' .env('DO_REPO_LINK').$base->bdd_img_path. '>Download </a>';
+                    $output .= ' <a class="btn btn-primary btn-lg mx-1" onclick="downloadBase('.$base->id.')"  href="#">Download </a>';
                     if (auth()->user() !=null){
                     if (auth()->user()->isInRole("admin") || auth()->user()->isOwner($base)){
                     $output .= '<a class="btn btn-danger btn-lg"  onclick="deleteBase('.$base->id.')" href="#">Delete </a>';
@@ -105,7 +105,7 @@ class SearchController extends Controller
         {
          $output = '
          <tr>
-          <td class = "error" align="center" colspan="5">No Data Found</td>
+          <td class = "error" align="center" colspan="5">No Database Found with the given name</td>
          </tr>
          ';
          echo $output;

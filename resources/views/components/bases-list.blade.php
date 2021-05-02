@@ -34,7 +34,7 @@
             </div>
          
            <div class="intro-button mx-auto">
-             <a class="btn btn-primary btn-lg" onclick="incrementDownload({{$base->id}})" href={{env('DO_REPO_LINK').$base->bdd_img_path}}>Download </a>
+             <a class="btn btn-primary btn-lg" onclick="downloadBase({{$base->id}})" href="#">Download </a>
              @auth
              @if (auth()->user()->isInRole("admin") || auth()->user()->isOwner($base))
              <a class="btn btn-danger btn-lg" onclick="deleteBase({{$base->id}})" href="#">Delete </a>

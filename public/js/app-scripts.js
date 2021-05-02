@@ -1,55 +1,36 @@
 
-$('#base_name').keyup(function(){ 
-  //document.getElementById(hide_part).style.display = none;
-    
-  $('#hide_part').empty();
-        var query = $(this).val();
-        
-         var _token = $('input[name="_token"]').val();
-         $.ajax({
-          url:"{{ route('list.action') }}",
-          method:"POST",
-          data:{query:query, _token:_token},
-          success:function(data){
-           $('#countryList').fadeIn();  
-                    $('#countryList').html(data);
-          }
-         });
-        
 
-
-    });
-
-
-function incrementDownload(baseId){
-    console.log(baseId)
+function downloadBase(baseId){
           var CSRF_TOKEN = $('[name="_token"]').val();
-          $.ajax({
-              url:'/increment-download',
-              type:'get',
-              dataType: 'json',
-               data: {'baseId': baseId, _token: CSRF_TOKEN},
-              success: function (result, status) {
-                  $('#downloads'+baseId).text(result.nbDownloads)
-                  //location.reload()
-              },
-              error : function(result, status, error){
-                  console.log(error)
-              }
+          window.open('/download-base?baseId='+baseId, '_blank'); 
+            $('#downloads'+baseId).text(Number($('#downloads'+baseId).text())+1)
+
+        //   $.ajax({
+        //       url:'/download-base',
+        //       type:'post',
+        //       dataType: 'json',
+        //        data: {'baseId': baseId,  _token: CSRF_TOKEN},
+        //       success: function (result, status) {
+        //           $('#downloads'+baseId).text(result.nbDownloads)
+        //           //location.reload()
+        //       },
+        //       error : function(result, status, error){
+        //           console.log(error)
+        //       }
           
-          })
+        //   })
          
       }
 
       function deleteBase(baseId){
           var CSRF_TOKEN =$('[name="_token"]').val();
+          $('#section'+baseId).remove();
           $.ajax({
               url:'/delete-base',
               type:'post',
               dataType: 'json',
                data: {'baseId': baseId, _token: CSRF_TOKEN},
               success: function (result, status) {
-                  $('#section'+baseId).remove();
               },
               error : function(result, status, error){
                   console.log(error)

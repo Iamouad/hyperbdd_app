@@ -94,15 +94,12 @@
          
          
          <div class="intro-button mx-auto">
-           <a class="btn btn-primary btn-lg"  onclick="incrementDownload({{$base->id}})" href={{env('DO_REPO_LINK').$base->bdd_img_path}}>Download </a>
+           <a class="btn btn-primary btn-lg"  onclick="downloadBase({{$base->id}})" href={{env('DO_REPO_LINK').$base->bdd_img_path}}>Download </a>
            @auth
-{{-- <<<<<<< HEAD --}}
+           
            @if (auth()->user()->isInRole("admin") || auth()->user()->isOwner($base))
            <a class="btn btn-danger btn-lg" onclick="deleteBase({{$base->id}})" href="#">Delete </a>
-{{-- =======
-           @if (auth()->user()->isInRole("admin"))
-           <a class="btn btn-danger btn-xl " onclick="deleteBase({{$base->id}})" href="#">Delete </a>
->>>>>>> 9db7ece698eb94f4a4e795e6e05f82492dc4e658 --}}
+
            @endauth
            
            @endif

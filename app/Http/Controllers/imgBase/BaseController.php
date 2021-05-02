@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\imgBase;
 
 use App\Models\Base;
+use App\Mail\BaseUploaded;
 use Illuminate\Http\Request;
 use App\Models\ApplicationType;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class BaseController extends Controller
@@ -19,16 +21,21 @@ class BaseController extends Controller
         return view('base.form',[
             'applicationTypes'=>$applicationTypes
         ] );
+
     }
 
     public function uploadBase(Request $request)
     {
         # code...
-        $file = $request->file('file');
+        $file = $request->file('fileupload');
         $extention = $file->extension();
         $mimeType = $file->getMimeType();
-        $path= Storage::disk('do_spaces')->putFileAs('uploads', $file, time().'.'.$extention, 'public');
-        //dd($path);
+        $fileName = $file->getClientOriginalName();
+        //upload in the cloud
+        $path = Storage::disk('do_spaces')->putFileAs('uploads/user'.Auth::user()->id, $file, $fileName, 'public');
+        //upload in an ftp server
+        //$path= Storage::disk('eil-ftp')->putFileAs('uploads', $file, time().'.'.$extention);
+
         $response = array(
             'status' => 'success',
             'path' => $path,
@@ -55,7 +62,8 @@ class BaseController extends Controller
     {
         $link = env('DO_REPO_LINK');
         $path = $request->path;
-        return redirect($link.$path);
+        //return redirect($link.$path);
+        return Storage::disk('do_spaces')->download($path);
     }
 
     public function storeBase(Request $request)
@@ -84,7 +92,7 @@ class BaseController extends Controller
             $time = time();
             Storage::disk('public')->putFileAs('uploads',$indexImg ,$time.'.'.$extention);
             //code...
-            Base::create([
+            $base = Base::create([
                 'dbname' => $request->dbname,
                 'nbimages' => $request->nbimages,
                 'user_id' => Auth::user()->id,
@@ -96,6 +104,8 @@ class BaseController extends Controller
                 'index_img_path' => 'uploads/'.$time.'.'.$extention,
                 'bdd_img_path' => $request->db_file_name
             ]);
+            Mail::to(Auth::user())->send(new BaseUploaded(Auth::user()->firstname, $base->id));
+
         } catch (Exception $ex) {
             //throw $th;
             return redirect()->back()->with("status", $ex->getMessage());
@@ -103,6 +113,22 @@ class BaseController extends Controller
         }
 
         return redirect()->to('/');
+    }
+
+    public function findBase(Request $request)
+    {
+        # code...
+        $file = 'uploads/user'.Auth::user()->id.'/'.$request->file;
+        $size = null;
+        if(Storage::disk('do_spaces')->exists($file)){
+            $size = Storage::disk('do_spaces')->size($file);
+        }
+        $response = array(
+            'status' => 'success',
+            'size' => $size,
+        );
+        
+        return response()->json($response);
     }
 
     public function storeApplicationType(Request $request)
@@ -127,17 +153,20 @@ class BaseController extends Controller
         }
     }
 
-    public function incrementDownload(Request $request)
+    public function downloadBase(Request $request)
     {
         $base = Base::find($request->baseId);
         $base->nb_downloads = $base->nb_downloads + 1;
         $base->save();
+       // $path = env('DO_REPO_LINK').$base->bdd_img_path;
+        // $dbname = $request->dbname;
         $response = array(
             'status' => 'success',
             'nbDownloads' => $base->nb_downloads,
         );
-       
-        return response()->json($response); 
+        return Storage::disk('do_spaces')->download($base->bdd_img_path);
+
+        //return response()->json($response); 
     }
 
     public function baseIndex(Request $request)

@@ -55,7 +55,7 @@ Route::get('/live_search/action', 'LiveSearch@action')->name('live_search.action
 //Route::get('/','SearchController@index');
 
 Route::get('/bases/new', [BaseController::class, 'index'])->name("newBase")->middleware('auth');
-Route::get('/bases/{id}', [BaseController::class, 'baseIndex']);
+Route::get('/bases/{id}', [BaseController::class, 'baseIndex'])->name('baseIndex');
 Route::get('/bases/user/{user_id}', [BaseController::class, 'userBases']);
 
 
@@ -64,10 +64,14 @@ Route::post('/bases/new', [BaseController::class, 'storeBase'])->middleware('aut
 Route::post('/bases/upload', [BaseController::class, 'uploadBase'])->middleware('auth');
 Route::post('delete-base', [BaseController::class, 'deleteBase'])->middleware('auth');
 
-Route::get('increment-download', [BaseController::class, 'incrementDownload']);
+Route::get('download-base', [BaseController::class, 'downloadBase']);
+Route::get('find-file', [BaseController::class, 'findBase']);
 
 
-Route::get('/bases/download', [BaseController::class, 'showFile']);
+
+
+
+Route::get('/bases/{path}', [BaseController::class, 'showFile']);
 
 
 
