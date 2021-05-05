@@ -13,6 +13,7 @@ services:
     environment:
       WWWUSER: "${WWWUSER}"
       LARAVEL_SAIL: 1
+
     volumes:
       - ".:/var/www/html"
     networks:

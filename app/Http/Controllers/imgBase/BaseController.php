@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\imgBase;
 
 use App\Models\Base;
+use App\Jobs\DownloadBase;
 use App\Mail\BaseUploaded;
 use Illuminate\Http\Request;
 use App\Models\ApplicationType;
@@ -32,9 +33,9 @@ class BaseController extends Controller
         $mimeType = $file->getMimeType();
         $fileName =str_replace(' ', '', $file->getClientOriginalName()) ;
         //upload in the cloud
-        $path = Storage::disk('do_spaces')->putFileAs('uploads/user'.Auth::user()->id, $file, $fileName, 'public');
+        //$path = Storage::disk('do_spaces')->putFileAs('uploads/user'.Auth::user()->id, $file, $fileName, 'public');
         //upload in an ftp server
-        //$path= Storage::disk('eil-ftp')->putFileAs('uploads', $file, time().'.'.$extention);
+        $path= Storage::disk('eil-ftp')->putFileAs('uploads/user'.Auth::user()->id, $file, $fileName);
 
         $response = array(
             'status' => 'success',
@@ -48,7 +49,7 @@ class BaseController extends Controller
     public function deleteBase(Request $request)
     {
         $base = Base::find($request->baseId);
-        Storage::disk('do_spaces')->delete($base->bdd_img_path);
+        Storage::disk('eil-ftp')->delete($base->bdd_img_path);
         Storage::disk('public')->delete($base->index_img_path);
         Base::destroy($base->id);
         $response = array(
@@ -58,13 +59,6 @@ class BaseController extends Controller
         return response()->json($response); 
     }
 
-    public function showFile(Request $request)
-    {
-        $link = env('DO_REPO_LINK');
-        $path = $request->path;
-        //return redirect($link.$path);
-        return Storage::disk('do_spaces')->download($path);
-    }
 
     public function storeBase(Request $request)
     {
@@ -84,7 +78,7 @@ class BaseController extends Controller
             $indexImg = $request->file('indexImg');
             $extention = $indexImg->extension();
             $mimeType = $indexImg->getMimeType();
-
+            
             /*$myvalue = $request->dbname;
             $arr = explode(' ',trim($myvalue));*/
             //echo $arr[0];
@@ -121,8 +115,8 @@ class BaseController extends Controller
         $fileName = str_replace(' ', '',$request->file);
         $file = 'uploads/user'.Auth::user()->id.'/'.$fileName;
         $size = null;
-        if(Storage::disk('do_spaces')->exists($file)){
-            $size = Storage::disk('do_spaces')->size($file);
+        if(Storage::disk('eil-ftp')->exists($file)){
+            $size = Storage::disk('eil-ftp')->size($file);
         }
         $response = array(
             'status' => 'success',
@@ -154,21 +148,6 @@ class BaseController extends Controller
         }
     }
 
-    public function downloadBase(Request $request)
-    {
-        $base = Base::find($request->baseId);
-        $base->nb_downloads = $base->nb_downloads + 1;
-        $base->save();
-       // $path = env('DO_REPO_LINK').$base->bdd_img_path;
-        // $dbname = $request->dbname;
-        $response = array(
-            'status' => 'success',
-            'nbDownloads' => $base->nb_downloads,
-        );
-        return Storage::disk('do_spaces')->download($base->bdd_img_path);
-
-        //return response()->json($response); 
-    }
 
     public function baseIndex(Request $request)
     {

@@ -1,15 +1,16 @@
 <?php
 
+use App\Http\Controllers\LiveSearch;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\auth\LogoutController;
+use App\Http\Controllers\AutocompleteController;
 use App\Http\Controllers\imgBase\BaseController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\dashboard\DashboardController;
-use App\Http\Controllers\LiveSearch;
-use App\Http\Controllers\AutocompleteController;
-use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,14 +65,15 @@ Route::post('/bases/new', [BaseController::class, 'storeBase'])->middleware('aut
 Route::post('/bases/upload', [BaseController::class, 'uploadBase'])->middleware('auth');
 Route::post('delete-base', [BaseController::class, 'deleteBase'])->middleware('auth');
 
-Route::get('download-base', [BaseController::class, 'downloadBase']);
+Route::get('download-base', [DownloadController::class, 'downloadBase']);
 Route::get('find-file', [BaseController::class, 'findBase']);
 
 
-
-
-
-Route::get('/bases/{path}', [BaseController::class, 'showFile']);
+Route::get('/queue', function() {
+    dispatch(function() {
+        logger('Running our first job!');
+    });
+});
 
 
 
