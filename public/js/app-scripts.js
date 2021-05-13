@@ -44,3 +44,10 @@ function downloadBase(baseId){
       function changeWindow(baseId) {
         window.location.href='bases/'+baseId;
       }
+      function openForm() {
+        document.getElementById("myForm").style.display = "block";
+      }
+      
+      function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+      }

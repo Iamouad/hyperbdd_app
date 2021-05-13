@@ -64,16 +64,13 @@ Route::post('add-app-type', [BaseController::class, 'storeApplicationType'])->mi
 Route::post('/bases/new', [BaseController::class, 'storeBase'])->middleware('auth');
 Route::post('/bases/upload', [BaseController::class, 'uploadBase'])->middleware('auth');
 Route::post('delete-base', [BaseController::class, 'deleteBase'])->middleware('auth');
+Route::get('add-result', [BaseController::class, 'addResult']);
+
 
 Route::get('download-base', [DownloadController::class, 'downloadBase']);
 Route::get('find-file', [BaseController::class, 'findBase']);
 
 
-Route::get('/queue', function() {
-    dispatch(function() {
-        logger('Running our first job!');
-    });
-});
 
 
 

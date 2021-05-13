@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Result;
 use App\Models\ApplicationType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -37,6 +38,11 @@ class Base extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function Results()
+    {
+        return $this->hasMany(Result::class);
     }
 
 

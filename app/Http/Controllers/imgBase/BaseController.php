@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\imgBase;
 
 use App\Models\Base;
+use App\Models\Result;
 use App\Jobs\DownloadBase;
 use App\Mail\BaseUploaded;
 use Illuminate\Http\Request;
 use App\Models\ApplicationType;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -59,6 +61,16 @@ class BaseController extends Controller
         return response()->json($response); 
     }
 
+    public function addResult(Request $request)
+    {
+        $result = new Result();
+        $result->base_id = $request->baseId;
+        $result->user_infos = $request->userInfos;
+        $result->classification_rate = $request->classificationRate;
+        $result->save();
+        return response()->json($result); 
+    }
+
 
     public function storeBase(Request $request)
     {
@@ -67,7 +79,7 @@ class BaseController extends Controller
         $this->validate($request, [
             'dbname' => 'required|max:50',
             'nbimages' => 'required|numeric|min:0',
-            'apptype' => 'required|max:100',
+            'apptype' => 'required|min:1',
             'references' => 'nullable',
             'classification_rate'=>'min:0|max:100|numeric|required',
             'description' => 'nullable',
@@ -102,6 +114,7 @@ class BaseController extends Controller
 
         } catch (Exception $ex) {
             //throw $th;
+            Storage::disk('eil-ftp')->delete($base->bdd_img_path);
             return redirect()->back()->with("status", $ex->getMessage());
 
         }
@@ -152,9 +165,11 @@ class BaseController extends Controller
     public function baseIndex(Request $request)
     {
         $base = Base::find($request->id);
+        $results = DB::table('results')->orderBy('classification_rate', 'desc')->limit(5)->get();
         if($base){
             return view('base.baseIndex', [
-                'base' => $base
+                'base' => $base,
+                'results' => $results
             ]);
         }
         return \redirect()->back()->withErrors(["Ressource not found"]);

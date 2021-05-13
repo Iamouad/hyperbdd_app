@@ -274,7 +274,7 @@ $(document).ready(function(){
                 success: function (result, status) {
 
                     console.log('result', result)
-                    $("#apptype").append(new Option(newApp, result.data.id));
+                    $("#apptype").append(new Option(newApp, result.data.id, false, true));
 
                     //location.reload()
                 },

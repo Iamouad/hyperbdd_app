@@ -65,7 +65,7 @@ return [
 				
             'driver' => 'sftp',
 						
-            'host' => '193.49.192.12',
+            'host' => 'spectrale.univ-littoral.fr',
 						
             'username' => 'mazouay',
 						
