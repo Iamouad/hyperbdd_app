@@ -27,7 +27,7 @@
         <div class="card card-space" >
           <div class="card-body">
             <h5 class="card-title">Published by  </h5>
-               <a href="{{'/bases/user/'.$base->user->id}}" class="card-text">{{$base->user->firstname.' '.$base->user->lastname}}</a>
+               <a href="{{ route('profile', ['id'=> $base->user->id ]) }}" class="card-text">{{$base->user->firstname.' '.$base->user->lastname}}</a>
  
          </div>
         </div>

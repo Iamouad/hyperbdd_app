@@ -23,8 +23,8 @@
             </thead>
             <tbody>
     @foreach ($pendedUsers as $user)
-         <div id="{{'div'.$user->id}}" class="row">
-         <tr>
+         <div class="row">
+         <tr id="{{'div'.$user->id}}" >
                     <td style="padding-top: 24px;">{{$user->lastname.' '.$user->firstname}}</td>
                     <td style="padding-top: 24px;">{{$user->email}}</td>
                     <td style="padding-top: 24px;">{{$user->created_at->diffForHumans()}}</td>

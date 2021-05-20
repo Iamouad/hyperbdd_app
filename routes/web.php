@@ -7,13 +7,10 @@ use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\auth\LogoutController;
-use App\Http\Controllers\AutocompleteController;
 use App\Http\Controllers\imgBase\BaseController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\dashboard\DashboardController;
-use App\Http\Controllers\LiveSearch;
 use App\Http\Controllers\AutocompleteController;
-use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
 
 /*
