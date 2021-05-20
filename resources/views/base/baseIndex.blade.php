@@ -58,18 +58,42 @@
                <p class="card-text">{{$base['classification_rate'].'%'}}</p>
 
                <div>
-                <button class="open-button btn btn-sm" onclick="openForm()">New Rate</button>
-                 <div class="form-popup" id="myForm">
-                   <form action="/action_page.php" class="form-container">
-                     {{-- <h1>New rate</h1> --}}
+                <button class="open-button btn btn-sm" data-toggle="modal" data-target="#popup">New Rate</button>
+                 
+                <!-- Pop-up -->
+                <form action="/action_page.php">
+                      <div id="popup" class="modal background" >
+                            <div class="modal-dialog">
+                                      <div class="modal-content">
+                                      <div class="modal-header flex">
+                                
+                                      <div class="form-group row" style="margin-left: 20px;">
+                                      <label for="colFormLabelSm" class="col-form-label col-form-label-Lg">Enter the new Rate :</label>
+                          <div >
+                            <input type="number" class="form-control form-control-Lg" id="classificationRate" placeholder="Enter the new Rate" style="margin-left: 20px;"  required>
+                          </div>
+                        </div>
+                                            </div>
+                                            <div class="modal-header flex">
+                                
+                                <div class="form-group row" style="margin-left: 20px;">
+                                <label for="colFormLabelSm" class="col-form-label col-form-label-Lg">Enter Your name :</label>
+                      <div style="margin-left: 18px;" >
+                      <input type="text" class="form-control form-control-Lg"  id="userInfos" placeholder="Enter Your name" style="margin-left: 20px;"  required>
+                      </div>
+                      </div>
+                                      </div>
+                                    
+                                      <div class="modal-footer flex">
+                                      <button type="button" class="btn btn-primary" onclick="addResult({{$base->id}})">Submit</button>
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close </button>
+                                            </div>
+                                      </div>
+                            </div>
+                      </div>
+                      </form>
 
-                     <input type="number" placeholder="Enter the new Rate" id="classificationRate" required>
-                     <input type="text" placeholder="Enter Your name" id="userInfos" required>
- 
-                     <button type="button" class="btn btn-sm" onclick="addResult({{$base->id}})">Submit</button>
-                     <button type="button" class="btn btn-sm cancel" onclick="closeForm()">Close</button>
-                   </form>
-                 </div>
+
                 </div>
               
          </div>

@@ -8,7 +8,7 @@
 
 
      <!-- Navbar -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+     <nav id="barnav" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
     <div class="container">
 
       <!-- Brand -->
@@ -61,36 +61,38 @@
           <div class="nav-item">
             <a class="nav-link "   style="color:white;" href="{{route('users')}}">Users</a>
           </div>
-          @endif
           <div class="nav-item">
-            <a class="nav-link" style="color:white; font-family:cursive; font-weight:bold" href="{{route('newBase')}}">NewDb</a>
+            <a class="nav-link" style="color:white" href="{{route('newBase')}}">NewDb</a>
           </div>
-          <div class="nav-item">
-            <a href="{{ route('profile', ['id'=> auth()->user()->id ])}}" class="nav-link  text-uppercase " style="color:white;font-family:cursive; font-weight:bold; margin-left: 645px;">
-                       
-                                {{auth()->user()->lastname}} <span class="caret"></span>
+          @endif
+          @endauth
 
-                            </a>
-                            <div class="navbar-nav nav-flex-icons" style="padding-left: 20px">
-                             <div class="dropdown">
-                               <a href="{{ route('profile', ['id'=> auth()->user()->id ])}}"><img   src="{{asset('storage/'.auth()->user()->avatar_path)}}" style="width:32px; height:36px; cursor:pointer; position:absolute; margin-left: 400px; top:-34px; left:170px; border-radius:50%"></a>
-                               
-                             </div>
-                            </div>
         
-        </div>
-       @endauth
+       
 
         </ul>
 
         <!-- Right -->
         <ul class="navbar-nav nav-flex-icons">
         @auth 
-        @if (!auth()->user()->isInRole("admin"))
-        <div class="nav-item">
-            <a class="nav-link"    style="color:white;" href="{{route('newBase')}}">NewDb</a>
+        <div class="nav-item">                
+             <div class="dropdown">
+               <a href="{{ route('profile', ['id'=> auth()->user()->id ])}}"><img   src="{{asset('storage/'.auth()->user()->avatar_path)}}" style="width:32px; height:36px;border-radius:50%"></a>
+                                                      
+            </div>
+
           </div>
-          @endif
+         
+        <div class="nav-item">
+        <a href="{{ route('profile', ['id'=> auth()->user()->id ])}}" class="nav-link  text-uppercase " style="color:white">
+                       
+            {{auth()->user()->lastname}} <span class="caret"></span>
+
+                </a>
+               </div>
+          
+
+
           <div class="flex" style="color:white;" >
           <div class="nav-item">
         </div>

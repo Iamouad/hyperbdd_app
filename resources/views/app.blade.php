@@ -36,16 +36,17 @@ $.ajaxSetup({
 
 // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
 window.onscroll = function() {scrollFunction()};
-
+window.onload = function() {scrollFunction()};
 function scrollFunction() {
+    
 if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-    document.getElementById("navbar").style.background = "linear-gradient(70deg, #196ba7 , #29a8c9,#7ca7d6 )";
-    document.getElementById("navbar").style.transition = "background-color 200ms linear";
+    document.getElementById("barnav").style.background = "linear-gradient(70deg, #196ba7 , #29a8c9,#7ca7d6 )";
+    document.getElementById("barnav").style.transition = "background-color 200ms linear";
 } 
 else {
-    document.getElementById("navbar").style.background = "rgba(0, 0, 0, 0.3)";
-    document.getElementById("navbar").style.box =  "0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%)";
-    document.getElementById("navbar").style.font = "300";
+    document.getElementById("barnav").style.background = "rgba(0, 0, 0, 0.3)";
+    document.getElementById("barnav").style.box =  "0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%)";
+    document.getElementById("barnav").style.font = "300";
 }
 }
 </script>
@@ -64,11 +65,13 @@ else {
 
 </head>
 <body class="background-picture margin-top">
+
     <x-menuNav></x-menuNav>
     <div >
         @yield('content')
         
     </div>
+    
 </body>
 
 <footer>
@@ -81,7 +84,7 @@ else {
   <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
  
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
- 
+
 
 </footer>
 </html>
