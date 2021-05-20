@@ -167,7 +167,7 @@ class BaseController extends Controller
     public function baseIndex(Request $request)
     {
         $base = Base::find($request->id);
-        $results = DB::table('results')->orderBy('classification_rate', 'desc')->limit(5)->get();
+        $results = DB::table('results')->where('base_id', $request->id)->orderBy('classification_rate', 'desc')->limit(5)->get();
         if($base){
             return view('base.baseIndex', [
                 'base' => $base,

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class BaseUploaded extends Mailable implements ShouldQueue
+class BaseUploaded extends Mailable
 {
     public $username;
     public $idBase;
