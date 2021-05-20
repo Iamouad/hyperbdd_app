@@ -63,20 +63,20 @@ return [
         ],
         'eil-ftp' => [
 				
-            'driver' => 'ftp',
+            'driver' => 'sftp',
 						
-            'host' => '127.0.0.1',
+            'host' => 'spectrale.univ-littoral.fr',
 						
-            'username' => 'mouad',
+            'username' => 'mazouay',
 						
-            'password' => 'admin',
+            'password' => 'Pouz9!9!',
 
             // Optional FTP Settings...
-            // 'port'     => 21,
-            // 'root' => '/Example',
-            // 'passive'  => true,
+             'port'     => 22,
+             'root' => '/home/mazouay/ftpProject',
+            'passive'  => true,
             // 'ssl'      => true,
-            // 'timeout'  => 30,
+            'timeout'  => 30,
         ],
 
     ],
