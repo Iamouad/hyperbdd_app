@@ -20,6 +20,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('avatar_path')->nullable();
+            $table->string('phone_number')->unique();
+            $table->string('fax');
+            $table->longText('academic_career');
+            $table->longText('description');
+            // $table->date('birth_date')->nullable();
             $table->boolean('validated_by_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();

@@ -71,7 +71,7 @@ class BaseController extends Controller
       
         # code...
         $this->validate($request, [
-            'dbname' => 'required|max:50',
+            'dbname' => 'required|max:100',
             'nbimages' => 'required|numeric|min:0',
             'apptype' => 'required|max:100',
             'references' => 'nullable',
@@ -90,7 +90,9 @@ class BaseController extends Controller
             //echo $arr[0];
 
             $time = time();
-            Storage::disk('public')->putFileAs('uploads',$indexImg ,$time.'.'.$extention);
+            $path =  Storage::disk('public')->putFileAs('uploads',$indexImg ,$time.'.'.$extention);
+            //Storage::disk('public')->putFile('uploads', $request->file('uploads'));
+            //ddd($path);
             //code...
             $base = Base::create([
                 'dbname' => $request->dbname,

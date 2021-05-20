@@ -19,6 +19,9 @@
     width: 100%;
 }
 
+.centrer{
+    text-align: center;
+}
 .btn-primary {
     background-color: #1b72ab;
     border-color: #196ca8;
@@ -40,7 +43,7 @@
 }
 .fixed-top {
     padding-top: 5px;
-    height: 67px;
+    /*height: 67px;*/
     position: fixed;
     top: 0;
     /* bottom: 325px; */
@@ -167,6 +170,10 @@ body {
     padding-left: 30%;
 }
 
+.text-center{
+    text-align: center;
+}
+
 .brand-wrapper0 {
     margin-bottom: 50px;
     margin-left: 97px;
@@ -185,6 +192,7 @@ body {
 }
 .logo1 {
     height: 23px;
+    margin-top: 11px;
 }
 
 .login-card {
@@ -296,3 +304,57 @@ body {
 }
 
 /*# sourceMappingURL=login.css.map */
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #5ca5c255;
+     margin-left: 400px; 
+     top:-4px; 
+     left:170px; 
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    border-radius:20%;
+
+    
+    
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  .caret.caret-up {
+    border-top-width: 0;
+    border-bottom: 4px solid #fff;
+  }
+  .brand-wrapper0 {
+    margin-bottom: 50px;
+    margin-left: 97px;
+    padding-left: 10%;
+  }
+  .brand-wrapper0 .logo {
+    height: 37px; }
+  
+  .brand-wrapper {
+    margin-bottom: 50px;
+    margin-left: 97px;
+  }
+    .brand-wrapper .logo {
+      height: 37px; }
+     .logo1 {
+      height: 23px; }  
+  
+  .over-size{
+        width: 82%;
+      }
+      .width{
+        width: 264%;
+        margin: 17%;
+        margin-right: 58%;
+        margin-left: -76%;
+      }

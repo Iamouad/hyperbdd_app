@@ -10,6 +10,7 @@ use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\LiveSearch;
 use App\Http\Controllers\AutocompleteController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,9 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
+Route::get('edit', [RegisterController::class, 'edit'])->name('edit');
+Route::post('edit', [RegisterController::class, 'update']);
+Route::get('profile', [ProfileController::class, 'profile'])->name('profile');
 
 Route::post('reject-user', [AdminController::class, 'rejectUser']);
 Route::post('approve-user', [AdminController::class, 'approveUser']);

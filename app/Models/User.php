@@ -23,6 +23,12 @@ class User extends Authenticatable
         'lastname',
         'email',
         'password',
+        'avatar_path',
+        'fax',
+        'phone_number',
+        'academic_career', 
+        'description',
+        // 'bith_date',
         'role_id',
         'validated_by_admin'
     ];

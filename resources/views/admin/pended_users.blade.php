@@ -1,23 +1,52 @@
 @extends('app')
 
 @section('content')
-
-<h2 style="text-align:center; margin:6px">Users waiting for admission </h2>
+<h2 class="section-heading" style="margin-bottom: 66px;">
+           <span class="section-heading-lower text-primary centrer">Users waiting for admission</span>
+         </h2>
 
 <div class="d-flex justify-content-center">
     @csrf
     <div>
     
         @if ($pendedUsers->count() > 0)
+        <table class="table table-responsive text-white">
+            <thead class="thead">
+              <tr>
+                <th class="text-center" scope="col">Full name</th>
+                <th class="text-center" scope="col">Email</th>
+                <th class="text-center" scope="col">Join date</th>
+                <th class="text-center" scope="col">Approve</th>
+                <th class="text-center" scope="col">Reject</th>
+            
+              </tr>
+            </thead>
+            <tbody>
     @foreach ($pendedUsers as $user)
          <div id="{{'div'.$user->id}}" class="row">
-            <div class="col p-2" style="font-weight:bold; font-family:cursive; color:white" > {{$user->lastname.' '.$user->firstname}}</div>
-            <div class="col p-2" style="font-weight:bold; font-family:cursive; color:white">{{$user->created_at->diffForHumans()}}</div>
-            <div class="col p-2" style="font-weight:bold; font-family:cursive; color:white"><button  onclick="approve(this.value)" value="{{$user->id}}" class="btn btn-success">Approve</button></div>
-            <div class="col p-2" style="font-weight:bold; font-family:cursive; color:white"><button  onclick="reject(this.value)" value="{{$user->id}}" class="btn btn-danger">Reject</button></div>
-            
+         <tr>
+                    <td style="padding-top: 24px;">{{$user->lastname.' '.$user->firstname}}</td>
+                    <td style="padding-top: 24px;">{{$user->email}}</td>
+                    <td style="padding-top: 24px;">{{$user->created_at->diffForHumans()}}</td>
+                    <td>
+            <div class="col p-2" style="color:white"><button  onclick="approve(this.value)" value="{{$user->id}}" class="btn btn-info">Approve</button></div>
+            </td>
+            <td>
+            <div class="col p-2" style="color:white"><button  onclick="reject(this.value)" value="{{$user->id}}" class="btn btn-info">Reject</button></div>
+            </td>
+                    
         </div>
     @endforeach
+    </tbody>
+          </table>
+
+
+
+
+
+
+
+
 
     @else
         <p>All users were admitted</p>

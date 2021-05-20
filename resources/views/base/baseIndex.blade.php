@@ -56,7 +56,9 @@
           <div class="card-body">
             <h5 class="card-title">Classification rate  </h5>
                <p class="card-text">{{$base['classification_rate'].'%'}}</p>
- 
+               <div class="intro-button mx-auto">
+           <a class="btn btn-primary btn-xl"  href={{env('DO_REPO_LINK').$base->bdd_img_path}}>New Rate </a>
+              </div>
          </div>
         </div>
 
@@ -94,11 +96,11 @@
          
          
          <div class="intro-button mx-auto">
-           <a class="btn btn-primary btn-lg"  onclick="downloadBase({{$base->id}})" href={{env('DO_REPO_LINK').$base->bdd_img_path}}>Download </a>
+           <a class="btn btn-primary btn-xl"  onclick="downloadBase({{$base->id}})" href={{env('DO_REPO_LINK').$base->bdd_img_path}}>Download </a>
            @auth
            
            @if (auth()->user()->isInRole("admin") || auth()->user()->isOwner($base))
-           <a class="btn btn-danger btn-lg" onclick="deleteBase({{$base->id}})" href="#">Delete </a>
+           <a class="btn btn-danger btn-xl" onclick="deleteBase({{$base->id}})" href="#">Delete </a>
 
            @endauth
            

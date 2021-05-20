@@ -59,32 +59,32 @@ class SearchController extends Controller
                           <div class="container">
                           <div class="intro"> 
                           <img class="intro-img0 img-fluid mb-3 mb-lg-0 rounded" src=' .asset("storage/".$base->index_img_path).'>
-                          <div class="intro-text0 left-0 text-center bg-faded p-5 rounded btn" style="height: 346px;" onclick="changeWindow('.$base->id. ')" >  '  ;   }
+                          <div class="intro-text left-0 text-center bg-faded p-5 rounded btn" style="margin-left: 55%;" onclick="changeWindow('.$base->id. ')" >  '  ;   }
                               
-                      $output .= ' <h2 class="section-heading mb-4"> <span class="section-heading-lower">'.$base->dbname. ' </span>
-                      </h2>';
+                      $output .= ' <h3 class=" mb-4"> <span>'.$base->dbname. ' </span>
+                      </h3>';
 
 
                       $output .= ' <ul class="no_bullets ">';
-                      $output .= '<li class=" flex m-2"><span class="badge p-2 mx-2 badge-primary">Creation Date  </span> <span>'.$base->created_at. ' </span>
+                      $output .= '<li class=" flex m-2"><span class="badge p-2 mx-2 ">Creation Date:  </span> <span>'.$base->created_at. ' </span>
                       </li>';
-                      $output .= '<li class=" flex m-2"><span class="badge p-2 mx-2  badge-secondary">Application Type </span> <span>'.ApplicationType::where('id',$base->application_types_id )->pluck('application_name')[0] . ' </span>
+                      $output .= '<li class=" flex m-2"><span class="badge p-2 mx-2 ">Application Type: </span> <span>'.ApplicationType::where('id',$base->application_types_id )->pluck('application_name')[0] . ' </span>
                       </li>';
-                      $output .= '<li class=" flex m-2"><span class="badge p-2 mx-2 badge-light">Number of Images </span> <span>'.$base->nbimages. ' </span>
+                      $output .= '<li class=" flex m-2"><span class="badge p-2 mx-2 ">Number of Images: </span> <span>'.$base->nbimages. ' </span>
                       </li>';
-                      $output .= '<li class=" flex m-2"><span class="badge p-2 mx-2 badge-dark">Number of Downloads </span> <span id= "downloads".'.$base->id.'>'.$base->nb_downloads. ' </span>
+                      $output .= '<li class=" flex m-2"><span class="badge p-2 mx-2">Number of Downloads: </span> <span id= "downloads".'.$base->id.'>'.$base->nb_downloads. ' </span>
                       </li>';
-                      $output .= '<li  class=" flex m-2" > <span class="badge p-2 mx-2 badge-info">Description </span><span class="d-inline-block text-truncate" style="max-width: 250px;">'.$base->description. ' </span>
+                      $output .= '<li  class=" flex m-2" > <span class="badge p-2 mx-2 ">Description: </span><span class="d-inline-block text-truncate" style="max-width: 250px;">'.$base->description. ' </span>
                       </li>';
                       
                   
 
                     $output .= '<div class="intro-button mx-auto">';
                     
-                    $output .= ' <a class="btn btn-primary btn-lg mx-1" onclick="downloadBase('.$base->id.')"  href="#">Download </a>';
+                    $output .= ' <a class="btn btn-primary btn-xl mx-1" onclick="downloadBase('.$base->id.')"  href="#">Download </a>';
                     if (auth()->user() !=null){
                     if (auth()->user()->isInRole("admin") || auth()->user()->isOwner($base)){
-                    $output .= '<a class="btn btn-danger btn-lg"  onclick="deleteBase('.$base->id.')" href="#">Delete </a>';
+                    $output .= '<a class="btn btn-danger btn-xl"  onclick="deleteBase('.$base->id.')" href="#">Delete </a>';
                     }}
                    
            

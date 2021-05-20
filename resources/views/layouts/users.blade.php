@@ -1,7 +1,12 @@
 @extends('app')
 
 @section('content')
-<h1 style="text-align:center; margin:6px;">Users & roles</h1>
+
+<div style="margin-top: 175px;">
+<h2 class="section-heading" style="margin-bottom: 66px;">
+           <span class="section-heading-lower text-primary centrer">Users & roles</span>
+         </h2>
+
 
     <div  class="d-flex justify-content-center">
       @csrf
@@ -41,6 +46,7 @@
           @endif
           
         </div>
+    </div>
     </div>
     <script>
       function roleChanged(userId, roleId) {

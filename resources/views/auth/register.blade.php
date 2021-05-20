@@ -7,7 +7,7 @@
 
   
   <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
-    <!-- <div class="container padd"> -->
+    
     <div class="cont">
       <div class="card login-card">
 
@@ -28,7 +28,7 @@
               <strong>{{ $message }}</strong>
               </div>
               @endif
-<form method="post" action="{{route('register')}}" style="margin-left: auto; margin-right: auto;">
+<form method="post" action="{{route('register')}}" enctype="multipart/form-data" style="margin-left: auto; margin-right: auto;">
     @csrf    
     <div class="top-row" id="p1">
     <div class="form-group">
@@ -72,7 +72,58 @@
         <label for="password_confirmation" class="ecrit">Password confirmation :</label>
         <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Confirm you password">
     </div>
+     <div class="form-group">
+        <label for="avatar">Profile Picture</label>
+        <input type="file" class="form-control @error('avatar') border border-danger @enderror" style="width: 100%;   height: 100%;" value="{{old('avatar')}}" id="avatar" name="avatar" placeholder="Enter your profile image">
+        @error('avatar')
+        
+        <div class="text-danger mt-2 text-sm">
+            {{$message}}
+        </div>
+        @enderror
+    </div>
+    <div class="form-group">
+      <label for="phone_number" class="ecrit">Phone number :</label>
+      <input type="text" class="form-control @error('phone_number') border border-danger @enderror" value="{{old('phone_number')}}" id="phone_number" name="phone_number" placeholder="Enter your phone number">
+      @error('phone_number')
+      <div class="text-danger mt-2 text-sm">
+          {{$message}}
+      </div>
+      @enderror
+      <div class="form-group">
+      <label for="fax" class="ecrit">Fax :</label>
+      <input type="text" class="form-control @error('fax') border border-danger @enderror" value="{{old('fax')}}" id="fax" name="fax" placeholder="Enter your fax">
+      @error('fax')
+      <div class="text-danger mt-2 text-sm">
+          {{$message}}
+      </div>
+      @enderror
+      <!-- <div class="form-group">
+      <label for="birth_date" class="ecrit">Birth date :</label>
+      <input type="text" class="form-control  @error('birth_date') border border-danger @enderror" value="{{old('birth_date')}}" id="birth_date" name="birth_date" placeholder="year-month-day">
+      @error('birth_date')
+      <div class="text-danger mt-2 text-sm">
+          {{$message}}
+      </div>
+      @enderror  -->
+      <div class="form-group">
+      <label for="academic_career" class="ecrit">Academic career :</label>
+      <textarea type="text" class="form-control @error('academic_career') border border-danger @enderror" value="{{old('academic_career')}}" id="academic_career" name="academic_career" placeholder="Enter your academic career"></textarea>
+      @error('academic_career')
+      <div class="text-danger mt-2 text-sm">
+          {{$message}}
+      </div>
+      @enderror
+      <div class="form-group">
+      <label for="description" class="ecrit">Research topics :</label>
+      <textarea type="text" class="form-control @error('description') border border-danger @enderror" value="{{old('description')}}" id="description" name="description" placeholder="Enter a description of your research topics"></textarea>
+      @error('academic_careerr')
+      <div class="text-danger mt-2 text-sm">
+          {{$message}}
+      </div>
+      @enderror  
 
+    
     <button type="submit" class="btn btn-primary left-push">Submit</button>
     </form>
     </div>

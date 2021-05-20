@@ -77,6 +77,12 @@ else {
     <script src="/js/jquery.fileupload.js"></script>
     <script src="/js/app-scripts.js"></script>
 
+      <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+ 
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+ 
+
 </footer>
 </html>
 
