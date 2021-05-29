@@ -57,13 +57,14 @@
   
     function approve(userId){
             var CSRF_TOKEN =$('[name="_token"]').val();
+            $('#div'+userId).remove();
             $.ajax({
                 url:'/approve-user',
                 type:'post',
                 dataType: 'json',
                  data: {'userId': userId, _token: CSRF_TOKEN},
                 success: function (result, status) {
-                    $('#div'+userId).remove();
+                    
                 },
                 error : function(result, status, error){
                     console.log(CSRF_TOKEN)
@@ -76,13 +77,14 @@
 
         function reject(userId){
             var CSRF_TOKEN =$('[name="_token"]').val();
+            $('#div'+userId).remove();
             $.ajax({
                 url:'/reject-user',
                 type:'post',
                 dataType: 'json',
                  data: {'userId': userId, _token: CSRF_TOKEN},
                 success: function (result, status) {
-                    $('#div'+userId).remove();
+                    
                 },
                 error : function(result, status, error){
                     console.log(error)

@@ -38,10 +38,12 @@
         
         </div>
        
+        @if(Auth::user())
         @if(Auth::user()->id == $user['id'])
         <div style="margin-top:-40px">
         <a class="pull-right btn btn-sm btn-primary mt-2" style="font-size: 20px;padding: 14px 40px;" href="{{route('edit')}}">Edit </a>
         </div>
+        @endif
         @endif
 
         

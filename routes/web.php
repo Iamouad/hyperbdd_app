@@ -32,7 +32,7 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 Route::get('edit', [RegisterController::class, 'edit'])->name('edit');
 Route::post('edit', [RegisterController::class, 'update']);
-Route::get('profile', [ProfileController::class, 'profile'])->name('profile');
+Route::get('profile/{id}', [ProfileController::class, 'profile'])->name('profile');
 
 Route::post('reject-user', [AdminController::class, 'rejectUser']);
 Route::post('approve-user', [AdminController::class, 'approveUser']);

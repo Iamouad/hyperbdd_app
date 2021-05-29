@@ -51,7 +51,7 @@ class RegisterController extends Controller
                 'academic_career'=>$request->academic_career,
                 'description'=>$request->description,
                 'avatar_path' => 'images/'.$filename.'.'.$extention,
-                'role_id' => 3,
+                'role_id' => 2,
                 'validated_by_admin' => 0]);
 
         } catch (Exception $ex) {
@@ -91,7 +91,7 @@ class RegisterController extends Controller
             $data->avatar_path='images/'.$filename.'.'.$extention;
         }
         $data->save();
-        return redirect()->route('profile');
+        return redirect()->route('profile', ["id"=> Auth::user()->id]);
     }
 
 }

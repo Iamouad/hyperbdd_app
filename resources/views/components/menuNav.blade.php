@@ -61,10 +61,11 @@
           <div class="nav-item">
             <a class="nav-link "   style="color:white;" href="{{route('users')}}">Users</a>
           </div>
+         
+          @endif
           <div class="nav-item">
             <a class="nav-link" style="color:white" href="{{route('newBase')}}">NewDb</a>
           </div>
-          @endif
           @endauth
 
         

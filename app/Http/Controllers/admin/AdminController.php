@@ -44,6 +44,8 @@ class AdminController extends Controller
     {
         $user = User::find($request->userId);
         $user->validated_by_admin = true;
+        $user->role_id=2;
+
         $user->save();
         $response = array(
             'status' => 'success',

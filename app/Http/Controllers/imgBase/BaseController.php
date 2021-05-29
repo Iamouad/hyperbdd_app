@@ -112,7 +112,7 @@ class BaseController extends Controller
                 'index_img_path' => 'uploads/'.$time.'.'.$extention,
                 'bdd_img_path' => $request->db_file_name
             ]);
-            Mail::to(Auth::user())->send(new BaseUploaded(Auth::user()->firstname, $base->id));
+           // Mail::to(Auth::user())->send(new BaseUploaded(Auth::user()->firstname, $base->id));
 
         } catch (Exception $ex) {
             //throw $th;

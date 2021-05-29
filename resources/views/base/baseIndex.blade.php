@@ -153,7 +153,7 @@
          
          <div class="intro-button mx-auto">
 
-           <a class="btn btn-primary btn-lg"  onclick="downloadBase({{$base->id}})" href="#">Download </a>
+           <a class="btn btn-primary btn-xl"  onclick="downloadBase({{$base->id}})" href="#">Download </a>
            @auth
            
            @if (auth()->user()->isInRole("admin") || auth()->user()->isOwner($base))
