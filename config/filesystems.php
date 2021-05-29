@@ -65,15 +65,15 @@ return [
 				
             'driver' => 'sftp',
 						
-            'host' => 'spectrale.univ-littoral.fr',
+            'host' => \env('FTP_HOST'),
 						
-            'username' => 'mazouay',
+            'username' => \env('FTP_USERNAME'),
 						
-            'password' => 'Pouz9!9!',
+            'password' => \env('FTP_PASSWORD'),
 
             // Optional FTP Settings...
-             'port'     => 22,
-             'root' => '/home/mazouay/ftpProject',
+             'port'     => \env('FTP_PORT'),
+             'root' => \env('FTP_ROOTDIR'),
             'passive'  => true,
             // 'ssl'      => true,
             'timeout'  => 30,
